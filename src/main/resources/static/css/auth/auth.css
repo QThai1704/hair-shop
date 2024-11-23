@@ -1,0 +1,131 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  font-family: "Montserrat", sans-serif;
+}
+
+#main {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.left-side img {
+  width: 100%;
+  height: 100vh;
+}
+
+.logo-fix {
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0.05;
+  z-index: 10;
+}
+
+.auth {
+  max-width: 436px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 16px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 100;
+}
+.auth-logo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.auth-logo img {
+  width: 36px;
+  height: 36px;
+  border-radius: 100%;
+}
+.auth-logo h1 {
+  font-size: 33px;
+  font-weight: 400;
+}
+
+.form > *:not(:last-child) {
+  margin-bottom: 16px; /* Tương ứng với space-y-4 */
+}
+
+.form .field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form .field label {
+  font-size: 16px;
+  color: var(--text-gray);
+}
+
+.form .field input {
+  height: 44px;
+  border: 2px solid var(--border-blue);
+  border-radius: 4px;
+  padding-left: 16px;
+}
+
+.form .field input:focus {
+  outline-color: var(--border-blue);
+}
+
+.checkbox {
+  width: 16px;
+  height: 16px;
+}
+
+.link {
+  text-decoration: none;
+  color: var(--border-blue);
+}
+
+label.checkbox-label {
+  color: var(--text-gray);
+  font-size: 16px;
+  line-height: 28px;
+}
+.auth-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-button button {
+  width: 188px;
+  height: 44px;
+  border: none;
+  background: #3a57e8;
+  color: #fff;
+  border-radius: 4px;
+}
+
+.o-auth-button button {
+  width: 188px;
+  height: 44px;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+.o-auth-button button:first-child {
+  background: red;
+}
+
+.o-auth-button button:last-child {
+  background: #777;
+}
