@@ -7,15 +7,19 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -31,11 +35,25 @@ public class Permission {
     String guardName;
     Timestamp createAt;
     Timestamp updateAt;
+    String createdBy;
+    String updatedBy;
 
     // Hibernate mappings
-    @OneToMany(mappedBy = "permission")
-    List<UserHasPermission> userHasPermissions;
+    @ManyToMany(mappedBy = "permissions")
+    List<Role> roles;
 
-    @OneToMany(mappedBy = "permission")
-    List<RoleHasPermissions> roleHasPermissions;
+    @ManyToMany(mappedBy = "permissions")
+    List<User> users;
+
+    @PrePersist
+    public void prePersist() {
+        createAt = new Timestamp(System.currentTimeMillis());
+        createdBy = "Hệ thống";
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        updateAt = new Timestamp(System.currentTimeMillis());
+        updatedBy = "Hệ thống";
+    }
 }
