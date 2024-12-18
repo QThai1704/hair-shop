@@ -165,7 +165,7 @@ h6, .h6 {
   font-size: 1rem;
 }
 
-p {
+p, span {
   margin-top: 0;
   margin-bottom: 1rem;
 }
@@ -11243,3 +11243,80 @@ body {
   font-size: 0.75rem;
   border-radius: 0.375rem !important;
 }
+
+/* Nguyen Quang Thai: Css custom */
+
+/* Header */
+#avatar{
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.flag {
+  margin-right: 10px;
+}
+
+#notification-container {
+  position: relative;
+  display: inline-block;
+}
+
+#number-notification {
+  position: absolute;
+  top: -2px;
+  right: -4px;
+  background-color: red;
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  font-size: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  background-color: #2c2f33; /* Màu nền tối */
+  padding: 10px 15px;
+  border-radius: 20px; /* Bo góc tròn */
+  width: 300px; /* Chiều rộng cố định */
+}
+
+/* Biểu tượng kính lúp */
+.search-icon {
+  all: unset; /* Tắt tất cả các kiểu mặc định */
+  cursor: pointer; /* Chỉ thay đổi con trỏ khi hover */
+  display: inline-flex; /* Giữ icon nằm ngang */
+  align-items: center; /* Canh giữa icon */
+  justify-content: center; /* Canh giữa icon */
+  background: none; /* Không có màu nền */
+  border: none; /* Không có viền */
+  padding: 0; /* Loại bỏ khoảng cách mặc định */
+  margin-right: 10px;
+  color: white;
+}
+
+.search-icon:focus {
+  outline: none; /* Tắt hiệu ứng focus */
+}
+
+/* Search input */
+.search-input {
+  flex: 1; /* Để input chiếm toàn bộ phần còn lại */
+  background: transparent; /* Nền trong suốt */
+  border: none; /* Xóa đường viền mặc định */
+  outline: none; /* Xóa outline khi focus */
+  color: #fff; /* Màu chữ */
+  font-size: 16px; /* Kích thước chữ */
+  caret-color: #fff; /* Màu con trỏ nháy */
+}
+
+.search-input::placeholder {
+  color: #b9bbbe; /* Màu placeholder */
+}
+
