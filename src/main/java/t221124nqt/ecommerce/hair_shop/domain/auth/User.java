@@ -18,6 +18,7 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Pattern;
@@ -52,7 +53,7 @@ public class User {
     @Enumerated(EnumType.STRING)
     GenderEnum gender;
     @NotBlank(message = "Email không được để trống")
-    @Pattern(regexp =  "" , message = "Email không hợp lệ")
+    @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.com", message = "Email không hợp lệ")
     String email;
     @Past(message = "Ngày sinh phải là ngày trong quá khứ")
     LocalDate dateOfBirth;
