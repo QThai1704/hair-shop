@@ -19,4 +19,6 @@ public interface UserService {
     ResPaginationDTO getAllUsers(Specification<User> spec ,Pageable pageable);
     User getUserByEmail(String email);
     void deleteUser(long id);
+    boolean checkExistEmail(String email);
+    boolean checkExistId(long id);
 }

@@ -8,9 +8,12 @@ import java.util.stream.Collectors;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import jakarta.validation.Valid;
 import t221124nqt.ecommerce.hair_shop.domain.auth.User;
+import t221124nqt.ecommerce.hair_shop.domain.request.ReqRegisterDTO;
 import t221124nqt.ecommerce.hair_shop.domain.response.other.ResPaginationDTO;
 import t221124nqt.ecommerce.hair_shop.domain.response.user.ResCreateUserDTO;
 import t221124nqt.ecommerce.hair_shop.domain.response.user.ResGetUserDTO;
@@ -25,10 +28,12 @@ public class IUserService implements UserService{
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+    private final PasswordEncoder passwordEncoder;
 
-    public IUserService(UserRepository userRepository, UserMapper userMapper) {
+    public IUserService(UserRepository userRepository, UserMapper userMapper, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -37,7 +42,7 @@ public class IUserService implements UserService{
     }
 
     @Override
-    public ResCreateUserDTO convertToResCreateUserDTO(User user) {
+    public ResCreateUserDTO convertToResCreateUserDTO(@Valid User user) {
         ResCreateUserDTO resCreateUserDTO = this.userMapper.toCreateUserDTO(user);
         return resCreateUserDTO;
     }
@@ -108,4 +113,26 @@ public class IUserService implements UserService{
         this.userRepository.deleteById(id);
     }
 
+    @Override
+    public boolean checkExistEmail(String email) {
+        return this.userRepository.existsByEmail(email);
+    }
+
+    @Override
+    public boolean checkExistId(long id) {
+        return this.userRepository.existsById(id);
+    }
+
+    public ResCreateUserDTO registerUser(ReqRegisterDTO reqRegisterDTO){
+        String password = this.passwordEncoder.encode(reqRegisterDTO.getPassword());
+        User newUser = new User();
+        newUser.setUsername(reqRegisterDTO.getUsername());
+        newUser.setLastName(reqRegisterDTO.getLastName());
+        newUser.setFirstName(reqRegisterDTO.getFirstName());
+        newUser.setPassword(password);
+        newUser.setEmail(reqRegisterDTO.getUsername());
+        this.userRepository.save(newUser);
+        ResCreateUserDTO resCreateUserDTO = UserMapper.INSTANCE.toCreateUserDTO(newUser);
+        return resCreateUserDTO;
+    }
 }
