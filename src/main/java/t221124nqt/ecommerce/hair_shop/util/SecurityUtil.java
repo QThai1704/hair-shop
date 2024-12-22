@@ -16,9 +16,9 @@ import t221124nqt.ecommerce.hair_shop.constant.GlobalConstant;
 @Service
 public class SecurityUtil {
     @Value("${hair-shop.jwt.access-token-validity-in-seconds}")
-    private static long jwtAccessExpiration;
+    private long jwtAccessExpiration;
     @Value("${hair-shop.jwt.refresh-token-validity-in-seconds}")
-    private static long jwtRefreshExpiration;
+    private long jwtRefreshExpiration;
 
     private final JwtEncoder jwtEncoder;
 
@@ -26,7 +26,7 @@ public class SecurityUtil {
         this.jwtEncoder = jwtEncoder;
     }
 
-    public String createAccessToken(Authentication authentication) {
+    public String createAccessToken(String username) {
 
         Instant now = Instant.now();
         Instant validity = now.plus(jwtAccessExpiration, ChronoUnit.SECONDS);
@@ -35,7 +35,7 @@ public class SecurityUtil {
         JwtClaimsSet claims = JwtClaimsSet.builder()
             .issuedAt(now)
             .expiresAt(validity)
-            .subject(authentication.getName())
+            .subject(username)
             .claim("123", "abc")
             .build();
 
@@ -43,7 +43,7 @@ public class SecurityUtil {
         return this.jwtEncoder.encode(JwtEncoderParameters.from(jwsHeader, claims)).getTokenValue();
     }
 
-    public String createRefreshToken(Authentication authentication) {
+    public String createRefreshToken(String username) {
         Instant now = Instant.now();
         Instant validity = now.plus(jwtRefreshExpiration, ChronoUnit.SECONDS);
 
@@ -51,7 +51,7 @@ public class SecurityUtil {
         JwtClaimsSet claims = JwtClaimsSet.builder()
             .issuedAt(now)
             .expiresAt(validity)
-            .subject(authentication.getName())
+            .subject(username)
             .claim("123", "abc")
             .build();
 

@@ -1,5 +1,7 @@
 package t221124nqt.ecommerce.hair_shop.domain.response.auth;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AccessLevel;
@@ -21,10 +23,16 @@ public class ResLoginDTO {
     @Setter
     @NoArgsConstructor
     @AllArgsConstructor
-    public class LoginedUser {
+    public static class LoginUser {
         private long id;
         private String username;
         private String email;
-        private String role;
+        private List<RoleUser> role;
+    }
+
+    @Getter
+    @Setter
+    public static class RoleUser {
+        private String name;
     }
 }

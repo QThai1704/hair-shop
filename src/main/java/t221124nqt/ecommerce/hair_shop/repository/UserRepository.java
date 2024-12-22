@@ -1,5 +1,7 @@
 package t221124nqt.ecommerce.hair_shop.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -10,7 +12,7 @@ import t221124nqt.ecommerce.hair_shop.domain.auth.User;
 
 public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificationExecutor<User> {
 
-    User findByEmail(String email);
+    Optional<User> findByEmail(String email);
 
     Page<User> findAll(Specification<User> spec, Pageable pageable);
 
