@@ -34,4 +34,6 @@ public interface UserService {
     boolean checkExistId(long id);
 
     User updateRefreshToken(String username, String refreshToken) throws EmailException;
+
+    User getUserInSecurityContext() throws EmailException;
 }

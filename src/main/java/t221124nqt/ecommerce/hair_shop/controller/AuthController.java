@@ -107,7 +107,17 @@ public class AuthController {
 
     @PostMapping("/auth/logout")
     @ApiMessage(message = "Đăng xuất")
-    public String postLogout() {
-        return "Hello";
+    public ResponseEntity<Void> postLogout() throws EmailException {
+        User user = this.userService.getUserInSecurityContext();
+        String username = user.getUsername();
+        this.userService.updateRefreshToken(username, null);
+        ResponseCookie responseCookie = ResponseCookie.from("refreshToken", null)
+                .httpOnly(true)
+                .maxAge(0)
+                .path("/")
+                .build();
+        return ResponseEntity.ok()
+                .header(HttpHeaders.SET_COOKIE, responseCookie.toString())
+                .body(null);
     }
 }

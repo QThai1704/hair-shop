@@ -7,7 +7,12 @@ import java.util.stream.Collectors;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 
 import jakarta.validation.Valid;
@@ -147,5 +152,28 @@ public class IUserService implements UserService {
         }
         user.setRememberToken(refreshToken);
         return this.userRepository.save(user);
+    }
+
+    @Override
+    public User getUserInSecurityContext() throws EmailException {
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        String email = securityContext.getAuthentication().getName();
+        if (email == null) {
+            throw new EmailException("Tài khoản không tồn tại!");
+        }
+        return this.getUserByEmail(email);
+    }
+
+    private static String extractPrincipal(Authentication authentication) {
+        if (authentication == null) {
+            return null;
+        } else if (authentication.getPrincipal() instanceof UserDetails springSecurityUser) {
+            return springSecurityUser.getUsername();
+        } else if (authentication.getPrincipal() instanceof Jwt jwt) {
+            return jwt.getSubject();
+        } else if (authentication.getPrincipal() instanceof String s) {
+            return s;
+        }
+        return null;
     }
 }
