@@ -36,8 +36,8 @@ public class Role {
     String name;
     String displayName;
     String guardName;
-    Timestamp createAt;
-    Timestamp updateAt;
+    Timestamp createdAt;
+    Timestamp updatedAt;
     String createdBy;
     String updatedBy;
 
@@ -53,13 +53,13 @@ public class Role {
 
     @PrePersist
     public void prePersist() {
-        createAt = new Timestamp(System.currentTimeMillis());
+        createdAt = new Timestamp(System.currentTimeMillis());
         createdBy = "Hệ thống";
     }
 
     @PreUpdate
     public void preUpdate() {
-        updateAt = new Timestamp(System.currentTimeMillis());
+        updatedAt = new Timestamp(System.currentTimeMillis());
         updatedBy = "Hệ thống";
     }
 }

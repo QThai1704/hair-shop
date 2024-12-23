@@ -3,6 +3,8 @@ package t221124nqt.ecommerce.hair_shop.controller;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
+import t221124nqt.ecommerce.hair_shop.constant.StatusEnum;
 import t221124nqt.ecommerce.hair_shop.domain.auth.User;
 import t221124nqt.ecommerce.hair_shop.domain.request.ReqLoginDTO;
 import t221124nqt.ecommerce.hair_shop.domain.request.ReqRegisterDTO;
@@ -26,30 +28,27 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
 @RequestMapping("/api/v1")
+@Slf4j
 public class AuthController {
     @Value("${hair-shop.jwt.refresh-token-validity-in-seconds}")
     private long jwtRefreshExpiration;
 
     private final IUserService userService;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
-    private final PasswordEncoder passwordEncoder;
     private final SecurityUtil securityUtil;
 
     public AuthController(
             IUserService userService,
             AuthenticationManagerBuilder authenticationManagerBuilder,
-            PasswordEncoder passwordEncoder,
             SecurityUtil securityUtil) {
         this.userService = userService;
         this.authenticationManagerBuilder = authenticationManagerBuilder;
-        this.passwordEncoder = passwordEncoder;
         this.securityUtil = securityUtil;
     }
 
@@ -75,6 +74,13 @@ public class AuthController {
                 reqLoginDTO.getUsername(), reqLoginDTO.getPassword());
         Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);
+        Authentication contextAuthentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (contextAuthentication != null) {
+            log.info("Authentication in SecurityContext: {}", contextAuthentication.getName());
+        } else {
+            log.warn("No authentication found in SecurityContext");
+        }
         ResLoginDTO res = new ResLoginDTO();
         User user = this.userService.getUserByEmail(reqLoginDTO.getUsername());
         if (user == null) {
@@ -94,7 +100,7 @@ public class AuthController {
         res.setAccessToken(accessToken);
         res.setUser(loginUser);
         String refreshToken = this.securityUtil.createRefreshToken(authentication.getName());
-        this.userService.updateRefreshToken(authentication.getName(), refreshToken);
+        this.userService.updateRefreshToken(authentication.getName(), refreshToken, StatusEnum.ACTIVE);
         ResponseCookie responseCookie = ResponseCookie.from("refreshToken", refreshToken)
                 .httpOnly(true)
                 .maxAge(jwtRefreshExpiration)
@@ -110,7 +116,7 @@ public class AuthController {
     public ResponseEntity<Void> postLogout() throws EmailException {
         User user = this.userService.getUserInSecurityContext();
         String username = user.getUsername();
-        this.userService.updateRefreshToken(username, null);
+        this.userService.updateRefreshToken(username, null, StatusEnum.INACTIVE);
         ResponseCookie responseCookie = ResponseCookie.from("refreshToken", null)
                 .httpOnly(true)
                 .maxAge(0)

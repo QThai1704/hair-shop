@@ -16,6 +16,8 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
+import t221124nqt.ecommerce.hair_shop.constant.StatusEnum;
 import t221124nqt.ecommerce.hair_shop.domain.auth.User;
 import t221124nqt.ecommerce.hair_shop.domain.request.ReqRegisterDTO;
 import t221124nqt.ecommerce.hair_shop.domain.response.other.ResPaginationDTO;
@@ -28,6 +30,7 @@ import t221124nqt.ecommerce.hair_shop.service.UserService;
 import t221124nqt.ecommerce.hair_shop.util.exception.EmailException;
 
 @Service
+@Slf4j
 public class IUserService implements UserService {
 
     private final UserRepository userRepository;
@@ -58,7 +61,7 @@ public class IUserService implements UserService {
             currentUser = this.userMapper.toUser(user);
             currentUser.setPassword(currentUser.getPassword());
             currentUser.setRememberToken(currentUser.getRememberToken());
-            currentUser.setCreateAt(currentUser.getCreateAt());
+            currentUser.setCreatedAt(currentUser.getCreatedAt());
             currentUser.setCreatedBy(currentUser.getCreatedBy());
             return this.userRepository.save(currentUser);
         }
@@ -145,26 +148,28 @@ public class IUserService implements UserService {
     }
 
     @Override
-    public User updateRefreshToken(String username, String refreshToken) throws EmailException {
+    public User updateRefreshToken(String username, String refreshToken, StatusEnum status) throws EmailException {
         User user = this.getUserByEmail(username);
         if (user == null) {
             throw new EmailException("Tài khoản không tồn tại!");
         }
         user.setRememberToken(refreshToken);
+        user.setStatus(status);
         return this.userRepository.save(user);
     }
 
     @Override
     public User getUserInSecurityContext() throws EmailException {
         SecurityContext securityContext = SecurityContextHolder.getContext();
-        String email = securityContext.getAuthentication().getName();
+        Authentication authentication = securityContext.getAuthentication();
+        String email = extractPrincipal(authentication);
         if (email == null) {
             throw new EmailException("Tài khoản không tồn tại!");
         }
         return this.getUserByEmail(email);
     }
 
-    private static String extractPrincipal(Authentication authentication) {
+    private String extractPrincipal(Authentication authentication) {
         if (authentication == null) {
             return null;
         } else if (authentication.getPrincipal() instanceof UserDetails springSecurityUser) {

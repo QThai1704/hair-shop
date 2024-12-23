@@ -3,6 +3,7 @@ package t221124nqt.ecommerce.hair_shop.service;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 
+import t221124nqt.ecommerce.hair_shop.constant.StatusEnum;
 import t221124nqt.ecommerce.hair_shop.domain.auth.User;
 import t221124nqt.ecommerce.hair_shop.domain.response.other.ResPaginationDTO;
 import t221124nqt.ecommerce.hair_shop.domain.response.user.ResCreateUserDTO;
@@ -33,7 +34,7 @@ public interface UserService {
 
     boolean checkExistId(long id);
 
-    User updateRefreshToken(String username, String refreshToken) throws EmailException;
+    User updateRefreshToken(String username, String refreshToken, StatusEnum status) throws EmailException;
 
     User getUserInSecurityContext() throws EmailException;
 }

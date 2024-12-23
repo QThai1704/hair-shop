@@ -48,18 +48,18 @@ public interface UserMapper {
     List<ResUserDTO.RoleUser> toRoleUserList(List<Role> roles);
     List<ResUserDTO.PermissionUser> toPermissionUserList(List<Permission> permissions);
 
-    @Mapping(source = "createAt", target = "createAt")
+    @Mapping(source = "createdAt", target = "createdAt")
     @Mapping(source = "createdBy", target = "createdBy")
     ResCreateUserDTO toCreateUserDTO(User user);
 
     @Mapping(source = "id", target = "id")
-    @Mapping(source = "updateAt", target = "updateAt")
+    @Mapping(source = "updatedAt", target = "updatedAt")
     @Mapping(source = "updatedBy", target = "updatedBy")
     ResUpdateUserDTO toUpdateUserDTO(User user);
 
-    @Mapping(source = "createAt", target = "createAt")
+    @Mapping(source = "createdAt", target = "createdAt")
     @Mapping(source = "createdBy", target = "createdBy")
-    @Mapping(source = "updateAt", target = "updateAt")
+    @Mapping(source = "updatedAt", target = "updatedAt")
     @Mapping(source = "updatedBy", target = "updatedBy")
     ResGetUserDTO toGetUserDTO(User user);
 
@@ -82,9 +82,9 @@ public interface UserMapper {
     @Mapping(source = "country", target = "country")
     @Mapping(source = "activeCode", target = "activeCode")
     @Mapping(source = "status", target = "status")
-    @Mapping(source = "createAt", target = "createAt")
+    @Mapping(source = "createdAt", target = "createdAt")
     @Mapping(source = "createdBy", target = "createdBy")
-    @Mapping(source = "updateAt", target = "updateAt")
+    @Mapping(source = "updatedAt", target = "updatedAt")
     @Mapping(source = "updatedBy", target = "updatedBy")
     User toUser(User user);
 }
