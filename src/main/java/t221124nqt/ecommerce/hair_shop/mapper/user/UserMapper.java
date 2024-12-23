@@ -16,7 +16,7 @@ import t221124nqt.ecommerce.hair_shop.domain.response.user.ResUserDTO;
 
 @Mapper(componentModel = "spring")
 public interface UserMapper {
-    UserMapper INSTANCE = Mappers.getMapper( UserMapper.class );
+    UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
 
     @Mapping(source = "username", target = "username")
     @Mapping(source = "lastName", target = "lastName")
@@ -46,6 +46,7 @@ public interface UserMapper {
     ResUserDTO.PermissionUser toPermissionDTO(Permission permission);
 
     List<ResUserDTO.RoleUser> toRoleUserList(List<Role> roles);
+
     List<ResUserDTO.PermissionUser> toPermissionUserList(List<Permission> permissions);
 
     @Mapping(source = "createdAt", target = "createdAt")

@@ -8,6 +8,6 @@ import lombok.Setter;
 @Setter
 public class ResUpdateUserDTO extends ResUserDTO {
     long id;
-    Timestamp updateAt;
+    Timestamp updatedAt;
     String updatedBy;
 }
