@@ -4,6 +4,9 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.hibernate.annotations.SoftDelete;
+import org.hibernate.type.YesNoConverter;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -35,6 +38,7 @@ import t221124nqt.ecommerce.hair_shop.constant.StatusEnum;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@SoftDelete(converter = YesNoConverter.class)
 @Entity
 @Table(name = "users")
 public class User {

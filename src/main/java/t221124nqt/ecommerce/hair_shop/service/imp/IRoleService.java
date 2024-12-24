@@ -30,7 +30,11 @@ public class IRoleService implements RoleService {
     }
 
     @Override
-    public Role createRole(Role role) {
+    public Role createRole(Role role) throws IdInvalidException {
+        if(this.checkExistName(role.getName()) == true){
+            throw new IdInvalidException("Đã tồn tại vai trò: " + role.getName());
+        }
+        role.setName(role.getName().toUpperCase());
         return this.roleRepository.save(role);
     }
 
@@ -73,6 +77,7 @@ public class IRoleService implements RoleService {
     public Role updateRole(Role role) throws IdInvalidException {
         Role currentRole = this.getRoleById(role.getId());
         currentRole = this.roleMapper.toRole(role);
+        currentRole.setName(currentRole.getName().toUpperCase());
         return this.roleRepository.save(currentRole);
     }
 
@@ -83,12 +88,20 @@ public class IRoleService implements RoleService {
     }
 
     @Override
-    public void deleteRoleById(long id) {
+    public void deleteRoleById(long id) throws IdInvalidException {
+        if(this.checkExistId(id) == false){
+            throw new IdInvalidException("Không tồn tại id: " + id);
+        }
         this.roleRepository.deleteById(id);
     }
 
     @Override
     public boolean checkExistId(long id) {
         return this.roleRepository.existsById(id);
+    }
+
+    @Override
+    public boolean checkExistName(String name) {
+        return this.roleRepository.existsByName(name);
     }
 }

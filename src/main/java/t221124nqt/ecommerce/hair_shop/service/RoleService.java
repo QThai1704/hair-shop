@@ -11,13 +11,14 @@ import t221124nqt.ecommerce.hair_shop.domain.response.role.ResUpdateRoleDTO;
 import t221124nqt.ecommerce.hair_shop.util.exception.IdInvalidException;
 
 public interface RoleService {
-    Role createRole(Role role);
+    Role createRole(Role role) throws IdInvalidException;
     ResCreateRoleDTO convertToResCreateRoleDTO(Role role);
     Role getRoleById(long id) throws IdInvalidException;
     ResGetRoleDTO convertToResGetRoleDTO(Role role);
     ResPaginationDTO getAllRoles(Specification<Role> spec, Pageable pageable);
     Role updateRole(Role role) throws IdInvalidException;
     ResUpdateRoleDTO convertToResUpdateRoleDTO(Role role);
-    void deleteRoleById(long id);
+    void deleteRoleById(long id) throws IdInvalidException;
     boolean checkExistId(long id);
+    boolean checkExistName(String name) throws IdInvalidException;
 }

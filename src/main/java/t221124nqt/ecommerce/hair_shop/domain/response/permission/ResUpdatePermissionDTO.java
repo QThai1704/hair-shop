@@ -14,7 +14,7 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class ResUpdatePermissionDTO {
+public class ResUpdatePermissionDTO extends ResPermissionDTO{
     long id;
     Timestamp updatedAt;
     String updatedBy;

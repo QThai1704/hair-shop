@@ -3,6 +3,9 @@ package t221124nqt.ecommerce.hair_shop.domain.auth;
 import java.sql.Timestamp;
 import java.util.List;
 
+import org.hibernate.annotations.SoftDelete;
+import org.hibernate.type.YesNoConverter;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,6 +26,7 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@SoftDelete(converter = YesNoConverter.class)
 @Entity
 @Table(name = "permissions")
 public class Permission {

@@ -36,7 +36,7 @@ public class RoleController {
 
     @PostMapping("/roles")
     @ApiMessage(message = "Tạo vai trò mới")
-    public ResponseEntity<ResCreateRoleDTO> createRole(@RequestBody Role role) {
+    public ResponseEntity<ResCreateRoleDTO> createRole(@RequestBody Role role) throws IdInvalidException {
         Role newRole = this.roleService.createRole(role);
         ResCreateRoleDTO resCreateRoleDTO = this.roleService.convertToResCreateRoleDTO(newRole);
         return ResponseEntity.status(HttpStatus.CREATED).body(resCreateRoleDTO);
@@ -69,7 +69,7 @@ public class RoleController {
 
     @DeleteMapping("/roles/{id}")
     @ApiMessage(message = "Xóa vai trò")
-    public ResponseEntity<Void> deleteRole(@PathVariable("id") long id){
+    public ResponseEntity<Void> deleteRole(@PathVariable("id") long id) throws IdInvalidException{
         this.roleService.deleteRoleById(id);
         return ResponseEntity.ok().body(null);
     }
