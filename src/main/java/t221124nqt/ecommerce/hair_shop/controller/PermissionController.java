@@ -36,6 +36,9 @@ public class PermissionController {
     @PostMapping("/permissions")
     @ApiMessage(message = "Tạo quyền")
     public ResponseEntity<ResCreatePermissionDTO> createPermission(@RequestBody Permission permission) {
+        if(this.permissionService.checkExistName(permission.getName())) {
+            throw new RuntimeException("Đã tồn tại quyền: " + permission.getName());
+        }
         Permission newPermission = this.permissionService.createPermission(permission);
         ResCreatePermissionDTO resCreatePermissionDTO = this.permissionService
                 .convertToResCreatePermissionDTO(newPermission);
@@ -45,6 +48,9 @@ public class PermissionController {
     @GetMapping("/permissions/{id}")
     @ApiMessage(message = "Tìm kiếm quyền")
     public ResponseEntity<ResGetPermissionDTO> getMethodName(@PathVariable("id") long id) {
+        if(!this.permissionService.checkExistId(id)) {
+            throw new RuntimeException("Không tìm thấy quyền với id: " + id);
+        }
         Permission findPermissionById = this.permissionService.getPermissionById(id);
         ResGetPermissionDTO resGetPermissionDTO = this.permissionService
                 .convertToResGetPermissionDTO(findPermissionById);
@@ -69,6 +75,9 @@ public class PermissionController {
     @DeleteMapping("/permissions/{id}")
     @ApiMessage(message = "Xóa quyền")
     public ResponseEntity<Void> deletePermission(@PathVariable("id") long id) {
+        if(!this.permissionService.checkExistId(id)) {
+            throw new RuntimeException("Không tìm thấy quyền");
+        }
         this.permissionService.deletePermission(id);
         return ResponseEntity.ok().body(null);
     }

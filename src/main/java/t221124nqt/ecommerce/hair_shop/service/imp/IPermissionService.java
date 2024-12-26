@@ -14,7 +14,7 @@ import t221124nqt.ecommerce.hair_shop.domain.response.other.ResPaginationDTO;
 import t221124nqt.ecommerce.hair_shop.domain.response.permission.ResCreatePermissionDTO;
 import t221124nqt.ecommerce.hair_shop.domain.response.permission.ResGetPermissionDTO;
 import t221124nqt.ecommerce.hair_shop.domain.response.permission.ResUpdatePermissionDTO;
-import t221124nqt.ecommerce.hair_shop.mapper.user.PermissionMapper;
+import t221124nqt.ecommerce.hair_shop.mapper.PermissionMapper;
 import t221124nqt.ecommerce.hair_shop.repository.PermissionRepository;
 import t221124nqt.ecommerce.hair_shop.service.PermissionService;
 
@@ -91,6 +91,11 @@ public class IPermissionService implements PermissionService {
     @Override
     public boolean checkExistId(long id) {
         return this.permissionRepository.existsById(id);
+    }
+
+    @Override
+    public boolean checkExistName(String name) {
+        return this.permissionRepository.existsByName(name);
     }
 
 }

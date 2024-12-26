@@ -1,4 +1,4 @@
-package t221124nqt.ecommerce.hair_shop.mapper.user;
+package t221124nqt.ecommerce.hair_shop.mapper;
 
 import java.util.List;
 

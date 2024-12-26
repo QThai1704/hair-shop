@@ -1,7 +1,6 @@
-package t221124nqt.ecommerce.hair_shop.domain.response.user;
+package t221124nqt.ecommerce.hair_shop.domain.response.customer;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -13,7 +12,7 @@ import t221124nqt.ecommerce.hair_shop.constant.StatusEnum;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class ResUserDTO {
+public class ResCustomerDTO {
     String username;
     String lastName;
     String firstName;
@@ -22,29 +21,15 @@ public class ResUserDTO {
     LocalDate dateOfBirth;
     String avatar;
     String code;
-    String jobTitle;
-    String department;
+    String company;
     String phone;
-    String address;
-    String deliveryAddress;
+    String billingAddress;
+    String shippingAddress;
     String city;
     String state;
     String postalCode;
     String country;
+    String rememberToken;
     String activeCode;
     StatusEnum status;
-    List<RoleUser> roles;
-    List<PermissionUser> permissions;
-
-    @Getter
-    @Setter
-    public static class RoleUser {
-        String name;
-    }
-
-    @Getter
-    @Setter
-    public static class PermissionUser {
-        String name;
-    }
 }

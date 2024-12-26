@@ -35,7 +35,6 @@ public class OrderDetail {
     LocalDateTime dateAllocated;
 
     // Hibernate mappings
-    // order_id, product_id
     @ManyToOne
     @JoinColumn(name = "order_id")
     Order order;

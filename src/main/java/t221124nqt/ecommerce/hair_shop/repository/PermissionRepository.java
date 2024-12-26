@@ -10,4 +10,5 @@ import t221124nqt.ecommerce.hair_shop.domain.auth.Permission;
 public interface PermissionRepository extends JpaRepository<Permission, Long>,
     JpaSpecificationExecutor<Permission> {
     boolean existsById(long id);
+    boolean existsByName(String name);
 }

@@ -27,4 +27,6 @@ public interface PermissionService {
     void deletePermission(long id);
 
     boolean checkExistId(long id);
+
+    boolean checkExistName(String name);
 }

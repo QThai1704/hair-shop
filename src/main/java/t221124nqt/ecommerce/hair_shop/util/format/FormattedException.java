@@ -23,6 +23,7 @@ public class FormattedException {
         IdInvalidException.class,
         EmailException.class,
         CommonException.class,
+        RuntimeException.class
     })
     public ResponseEntity<ResGlobalDTO<Object>> checkExists(Exception ex) {
         ResGlobalDTO<Object> res = new ResGlobalDTO<Object>();

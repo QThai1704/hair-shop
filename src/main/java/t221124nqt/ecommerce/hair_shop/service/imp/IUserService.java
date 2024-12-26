@@ -24,7 +24,7 @@ import t221124nqt.ecommerce.hair_shop.domain.response.other.ResPaginationDTO;
 import t221124nqt.ecommerce.hair_shop.domain.response.user.ResCreateUserDTO;
 import t221124nqt.ecommerce.hair_shop.domain.response.user.ResGetUserDTO;
 import t221124nqt.ecommerce.hair_shop.domain.response.user.ResUpdateUserDTO;
-import t221124nqt.ecommerce.hair_shop.mapper.user.UserMapper;
+import t221124nqt.ecommerce.hair_shop.mapper.UserMapper;
 import t221124nqt.ecommerce.hair_shop.repository.UserRepository;
 import t221124nqt.ecommerce.hair_shop.service.UserService;
 import t221124nqt.ecommerce.hair_shop.util.exception.EmailException;

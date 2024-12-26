@@ -14,7 +14,7 @@ import t221124nqt.ecommerce.hair_shop.domain.response.other.ResPaginationDTO;
 import t221124nqt.ecommerce.hair_shop.domain.response.role.ResCreateRoleDTO;
 import t221124nqt.ecommerce.hair_shop.domain.response.role.ResGetRoleDTO;
 import t221124nqt.ecommerce.hair_shop.domain.response.role.ResUpdateRoleDTO;
-import t221124nqt.ecommerce.hair_shop.mapper.user.RoleMapper;
+import t221124nqt.ecommerce.hair_shop.mapper.RoleMapper;
 import t221124nqt.ecommerce.hair_shop.repository.RoleRepository;
 import t221124nqt.ecommerce.hair_shop.service.RoleService;
 import t221124nqt.ecommerce.hair_shop.util.exception.IdInvalidException;

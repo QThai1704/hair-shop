@@ -30,8 +30,10 @@ public class PaymentType {
     String paymentName;
     String description;
     String image;
-    Timestamp createAt;
-    Timestamp updateAt;
+    Timestamp createdAt;
+    Timestamp updatedAt;
+    String createdBy;
+    String updatedBy;
 
     // Hibernate mappings
     @OneToMany(mappedBy = "paymentType")

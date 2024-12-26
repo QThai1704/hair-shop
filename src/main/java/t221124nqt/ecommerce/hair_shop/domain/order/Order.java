@@ -30,8 +30,6 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
-    // long employeeId;
-    // long customerId;
     LocalDateTime orderDate;
     LocalDateTime shippedDate;
     String shipName;
@@ -41,16 +39,15 @@ public class Order {
     String shipPostalCode;
     String shipCountry;
     String shippingFee;
-    // long paymentTypeId;
     LocalDate paiDate;
     String orderStatus;
-    Timestamp createAt;
-    Timestamp updateAt;
+    Timestamp createdAt;
+    Timestamp updatedAt;
 
     // Hibernate mappings
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    User user;
+    @JoinColumn(name = "employee_id")
+    User employee;
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
