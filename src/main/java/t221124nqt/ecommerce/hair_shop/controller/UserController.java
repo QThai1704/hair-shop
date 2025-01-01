@@ -7,6 +7,8 @@ import com.turkraft.springfilter.boot.Filter;
 
 import jakarta.validation.Valid;
 import t221124nqt.ecommerce.hair_shop.domain.auth.User;
+import t221124nqt.ecommerce.hair_shop.domain.request.user.ReqCreateUserDTO;
+import t221124nqt.ecommerce.hair_shop.domain.request.user.ReqUpdateUserDTO;
 import t221124nqt.ecommerce.hair_shop.domain.response.other.ResPaginationDTO;
 import t221124nqt.ecommerce.hair_shop.domain.response.user.ResCreateUserDTO;
 import t221124nqt.ecommerce.hair_shop.domain.response.user.ResGetUserDTO;
@@ -27,7 +29,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-
 @RestController
 @RequestMapping("/api/v1")
 public class UserController {
@@ -39,8 +40,9 @@ public class UserController {
 
     @PostMapping("/users")
     @ApiMessage(message = "Tạo mới người dùng")
-    public ResponseEntity<ResCreateUserDTO> createUser(@Valid @RequestBody User user) throws EmailException {
-        if(this.userService.checkExistEmail(user.getEmail()) == true){
+    public ResponseEntity<ResCreateUserDTO> createUser(@Valid @RequestBody ReqCreateUserDTO user)
+            throws EmailException {
+        if (this.userService.checkExistEmail(user.getEmail()) == true) {
             throw new EmailException("Email đã tồn tại!");
         }
         User newUser = this.userService.createUser(user);
@@ -60,7 +62,7 @@ public class UserController {
     @GetMapping("/users/{id}")
     @ApiMessage(message = "Tìm kiếm một người dùng")
     public ResponseEntity<ResGetUserDTO> getUserById(@PathVariable("id") long id) throws IdInvalidException {
-        if(this.userService.checkExistId(id) == false){
+        if (this.userService.checkExistId(id) == false) {
             throw new IdInvalidException("Không tồn tại User có id: " + id);
         }
         User user = this.userService.getUserById(id);
@@ -70,8 +72,9 @@ public class UserController {
 
     @PutMapping("/users")
     @ApiMessage(message = "Cập nhật thông tin người dùng")
-    public ResponseEntity<ResUpdateUserDTO> updateUser(@Valid @RequestBody User user) throws IdInvalidException {
-        if(this.userService.checkExistId(user.getId()) == false){
+    public ResponseEntity<ResUpdateUserDTO> updateUser(@Valid @RequestBody ReqUpdateUserDTO user)
+            throws IdInvalidException {
+        if (this.userService.checkExistId(user.getId()) == false) {
             throw new IdInvalidException("Không tồn tại User có id: " + user.getId());
         }
         User currentUser = this.userService.updateUser(user);
@@ -82,7 +85,7 @@ public class UserController {
     @DeleteMapping("/users/{id}")
     @ApiMessage(message = "Xóa người dùng")
     public ResponseEntity<Void> deleteUser(@PathVariable("id") long id) throws IdInvalidException {
-        if(this.userService.checkExistId(id) == false){
+        if (this.userService.checkExistId(id) == false) {
             throw new IdInvalidException("Không tồn tại User có id: " + id);
         }
         this.userService.deleteUser(id);

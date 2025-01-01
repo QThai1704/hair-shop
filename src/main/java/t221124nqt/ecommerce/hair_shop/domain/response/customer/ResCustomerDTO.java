@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 import t221124nqt.ecommerce.hair_shop.constant.GenderEnum;
-import t221124nqt.ecommerce.hair_shop.constant.StatusEnum;
 
 @Getter
 @Setter
@@ -29,7 +28,5 @@ public class ResCustomerDTO {
     String state;
     String postalCode;
     String country;
-    String rememberToken;
     String activeCode;
-    StatusEnum status;
 }

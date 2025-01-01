@@ -1,5 +1,6 @@
 package t221124nqt.ecommerce.hair_shop.service.imp;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -19,7 +20,7 @@ import t221124nqt.ecommerce.hair_shop.repository.PaymentTypeRepository;
 import t221124nqt.ecommerce.hair_shop.service.PaymentTypeService;
 
 @Service
-public class IPaymentTypeService implements PaymentTypeService{
+public class IPaymentTypeService implements PaymentTypeService {
 
     private final PaymentTypeRepository paymentTypeRepository;
     private final PaymentTypeMapper paymentTypeMapper;
@@ -42,7 +43,7 @@ public class IPaymentTypeService implements PaymentTypeService{
     @Override
     public PaymentType getPaymentTypeById(long id) {
         Optional<PaymentType> paymentType = this.paymentTypeRepository.findById(id);
-        if(paymentType.isPresent()) {
+        if (paymentType.isPresent()) {
             return paymentType.get();
         }
         return null;
@@ -57,9 +58,9 @@ public class IPaymentTypeService implements PaymentTypeService{
     public ResPaginationDTO getAllPaymentType(Specification<PaymentType> specification, Pageable pageable) {
         Page<PaymentType> paymentTypesPage = this.paymentTypeRepository.findAll(specification, pageable);
         List<ResGetPaymentDTO> paymentTypes = paymentTypesPage.getContent()
-        .stream()
-        .map(paymentType -> this.paymentTypeMapper.toResGetPaymentDTO(paymentType))
-        .collect(Collectors.toList());
+                .stream()
+                .map(paymentType -> this.paymentTypeMapper.toResGetPaymentDTO(paymentType))
+                .collect(Collectors.toList());
         ResPaginationDTO resPaginationDTO = new ResPaginationDTO();
         ResPaginationDTO.Meta meta = ResPaginationDTO.addMeta(paymentTypesPage, pageable);
         resPaginationDTO.setMeta(meta);
@@ -70,17 +71,19 @@ public class IPaymentTypeService implements PaymentTypeService{
     @Override
     public PaymentType updatePaymentType(PaymentType paymentType) {
         PaymentType currentPaymentType = this.getPaymentTypeById(paymentType.getId());
-        if(currentPaymentType != null) {
-            return this.paymentTypeRepository.save(paymentType);
+        if (currentPaymentType != null) {
+            Timestamp createdAt = currentPaymentType.getCreatedAt();
+            String createdBy = currentPaymentType.getCreatedBy();
+            currentPaymentType = this.paymentTypeMapper.toPaymentType(paymentType);
+            currentPaymentType.setCreatedAt(createdAt);
+            currentPaymentType.setCreatedBy(createdBy);
+            return this.paymentTypeRepository.save(currentPaymentType);
         }
         return null;
     }
 
     @Override
     public ResUpdatePaymentDTO convertToResUpdatePaymentDTO(PaymentType paymentType) {
-        if(paymentType == null) {
-            return null;
-        }
         return this.paymentTypeMapper.toResUpdatePaymentDTO(paymentType);
     }
 
@@ -91,7 +94,7 @@ public class IPaymentTypeService implements PaymentTypeService{
 
     @Override
     public boolean checkExistName(String name) {
-        return this.paymentTypeRepository.existsByName(name);
+        return this.paymentTypeRepository.existsByPaymentName(name);
     }
 
     @Override

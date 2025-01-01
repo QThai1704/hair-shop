@@ -10,7 +10,7 @@ import t221124nqt.ecommerce.hair_shop.service.imp.IOrderDetailService;
 public class OrderDetailController {
     private final IOrderDetailService orderDetailService;
 
-    public OrderDetailController(IOrderDetailService orderDetailService){
+    public OrderDetailController(IOrderDetailService orderDetailService) {
         this.orderDetailService = orderDetailService;
     }
 }

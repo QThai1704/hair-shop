@@ -1,5 +1,6 @@
 package t221124nqt.ecommerce.hair_shop.service.imp;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -19,7 +20,9 @@ import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import t221124nqt.ecommerce.hair_shop.constant.StatusEnum;
 import t221124nqt.ecommerce.hair_shop.domain.auth.User;
-import t221124nqt.ecommerce.hair_shop.domain.request.ReqRegisterDTO;
+import t221124nqt.ecommerce.hair_shop.domain.request.auth.ReqRegisterDTO;
+import t221124nqt.ecommerce.hair_shop.domain.request.user.ReqCreateUserDTO;
+import t221124nqt.ecommerce.hair_shop.domain.request.user.ReqUpdateUserDTO;
 import t221124nqt.ecommerce.hair_shop.domain.response.other.ResPaginationDTO;
 import t221124nqt.ecommerce.hair_shop.domain.response.user.ResCreateUserDTO;
 import t221124nqt.ecommerce.hair_shop.domain.response.user.ResGetUserDTO;
@@ -44,8 +47,9 @@ public class IUserService implements UserService {
     }
 
     @Override
-    public User createUser(User user) {
-        return this.userRepository.save(user);
+    public User createUser(ReqCreateUserDTO user) {
+        User newUser = this.userMapper.toUser(user);
+        return this.userRepository.save(newUser);
     }
 
     @Override
@@ -55,14 +59,18 @@ public class IUserService implements UserService {
     }
 
     @Override
-    public User updateUser(User user) {
+    public User updateUser(ReqUpdateUserDTO user) {
         User currentUser = this.getUserById(user.getId());
         if (currentUser != null) {
+            String password = currentUser.getPassword();
+            String rememberToken = currentUser.getRememberToken();
+            Timestamp createdAt = currentUser.getCreatedAt();
+            String createdBy = currentUser.getCreatedBy();
             currentUser = this.userMapper.toUser(user);
-            currentUser.setPassword(currentUser.getPassword());
-            currentUser.setRememberToken(currentUser.getRememberToken());
-            currentUser.setCreatedAt(currentUser.getCreatedAt());
-            currentUser.setCreatedBy(currentUser.getCreatedBy());
+            currentUser.setPassword(password);
+            currentUser.setRememberToken(rememberToken);
+            currentUser.setCreatedAt(createdAt);
+            currentUser.setCreatedBy(createdBy);
             return this.userRepository.save(currentUser);
         }
         return null;
@@ -71,7 +79,6 @@ public class IUserService implements UserService {
     @Override
     public ResUpdateUserDTO convertToResUpdateUserDTO(User currentUser) {
         if (currentUser != null) {
-            currentUser = this.userMapper.toUser(currentUser);
             ResUpdateUserDTO resUpdateUserDTO = this.userMapper.toUpdateUserDTO(currentUser);
             return resUpdateUserDTO;
         }

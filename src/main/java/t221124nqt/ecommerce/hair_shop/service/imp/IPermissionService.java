@@ -1,5 +1,6 @@
 package t221124nqt.ecommerce.hair_shop.service.imp;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -71,7 +72,11 @@ public class IPermissionService implements PermissionService {
     public Permission updatePermission(Permission permission) {
         Permission currentPermission = this.getPermissionById(permission.getId());
         if (currentPermission != null) {
+            Timestamp createdAt = currentPermission.getCreatedAt();
+            String createdBy = currentPermission.getCreatedBy();
             currentPermission = this.permissionMapper.toPermission(permission);
+            currentPermission.setCreatedAt(createdAt);
+            currentPermission.setCreatedBy(createdBy);
             return this.permissionRepository.save(currentPermission);
         }
         return null;

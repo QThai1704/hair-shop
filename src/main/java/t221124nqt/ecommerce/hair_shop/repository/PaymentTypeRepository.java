@@ -12,8 +12,10 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 @Repository
 public interface PaymentTypeRepository extends JpaRepository<PaymentType, Long>,
-    JpaSpecificationExecutor<PaymentType> {
-    Page<PaymentType> findAll(Specification<PaymentType> spec ,Pageable pageable);
-    boolean existsByName(String name);
+        JpaSpecificationExecutor<PaymentType> {
+    Page<PaymentType> findAll(Specification<PaymentType> spec, Pageable pageable);
+
+    boolean existsByPaymentName(String paymentName);
+
     boolean existsById(long id);
 }

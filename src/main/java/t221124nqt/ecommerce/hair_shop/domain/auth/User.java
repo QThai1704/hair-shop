@@ -84,19 +84,16 @@ public class User {
 
     // Hibernate
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "user_has_role",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JoinTable(name = "user_has_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     List<Role> roles;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "user_has_permission",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "permission_id"))
+    @JoinTable(name = "user_has_permission", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "permission_id"))
     List<Permission> permissions;
 
     @PrePersist
     public void prePersist() {
+        status = StatusEnum.INACTIVE;
         createdAt = new Timestamp(System.currentTimeMillis());
         createdBy = "Hệ thống";
     }

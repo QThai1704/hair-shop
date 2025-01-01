@@ -26,7 +26,7 @@ public interface PaymentTypeService {
 
     void deletePaymentType(long id);
 
-    boolean checkExistName(String name);
+    boolean checkExistName(String paymentName);
 
     boolean checkExistId(long id);
 }

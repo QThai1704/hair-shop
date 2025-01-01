@@ -1,4 +1,4 @@
-package t221124nqt.ecommerce.hair_shop.domain.request;
+package t221124nqt.ecommerce.hair_shop.domain.request.auth;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;

@@ -1,5 +1,6 @@
 package t221124nqt.ecommerce.hair_shop.service.imp;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -31,7 +32,7 @@ public class IRoleService implements RoleService {
 
     @Override
     public Role createRole(Role role) throws IdInvalidException {
-        if(this.checkExistName(role.getName()) == true){
+        if (this.checkExistName(role.getName()) == true) {
             throw new IdInvalidException("Đã tồn tại vai trò: " + role.getName());
         }
         role.setName(role.getName().toUpperCase());
@@ -47,7 +48,7 @@ public class IRoleService implements RoleService {
     @Override
     public Role getRoleById(long id) throws IdInvalidException {
         Optional<Role> role = this.roleRepository.findById(id);
-        if(!role.isPresent()) {
+        if (!role.isPresent()) {
             throw new IdInvalidException("Không tồn tại User có id: " + id);
         }
         return role.get();
@@ -64,9 +65,9 @@ public class IRoleService implements RoleService {
         ResPaginationDTO res = new ResPaginationDTO();
         Page<Role> rolePage = this.roleRepository.findAll(spec, pageable);
         List<ResGetRoleDTO> resGetRoleDTO = rolePage.getContent()
-                    .stream()
-                    .map(role -> this.roleMapper.toGetRoleDTO(role))
-                    .collect(Collectors.toList());
+                .stream()
+                .map(role -> this.roleMapper.toGetRoleDTO(role))
+                .collect(Collectors.toList());
         ResPaginationDTO.Meta meta = ResPaginationDTO.addMeta(rolePage, pageable);
         res.setData(resGetRoleDTO);
         res.setMeta(meta);
@@ -76,8 +77,12 @@ public class IRoleService implements RoleService {
     @Override
     public Role updateRole(Role role) throws IdInvalidException {
         Role currentRole = this.getRoleById(role.getId());
+        Timestamp createdAt = currentRole.getCreatedAt();
+        String createdBy = currentRole.getCreatedBy();
         currentRole = this.roleMapper.toRole(role);
         currentRole.setName(currentRole.getName().toUpperCase());
+        currentRole.setCreatedAt(createdAt);
+        currentRole.setCreatedBy(createdBy);
         return this.roleRepository.save(currentRole);
     }
 
@@ -89,7 +94,7 @@ public class IRoleService implements RoleService {
 
     @Override
     public void deleteRoleById(long id) throws IdInvalidException {
-        if(this.checkExistId(id) == false){
+        if (this.checkExistId(id) == false) {
             throw new IdInvalidException("Không tồn tại id: " + id);
         }
         this.roleRepository.deleteById(id);

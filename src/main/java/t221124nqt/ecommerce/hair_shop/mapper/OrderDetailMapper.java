@@ -5,5 +5,5 @@ import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring")
 public interface OrderDetailMapper {
-    OrderDetailMapper INSTANCE = Mappers.getMapper( OrderDetailMapper.class);
+    OrderDetailMapper INSTANCE = Mappers.getMapper(OrderDetailMapper.class);
 }

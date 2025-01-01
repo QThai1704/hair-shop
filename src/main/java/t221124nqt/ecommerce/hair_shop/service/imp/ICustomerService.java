@@ -1,5 +1,6 @@
 package t221124nqt.ecommerce.hair_shop.service.imp;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -19,7 +20,7 @@ import t221124nqt.ecommerce.hair_shop.repository.CustomerRepository;
 import t221124nqt.ecommerce.hair_shop.service.CustomerService;
 
 @Service
-public class ICustomerService implements CustomerService{
+public class ICustomerService implements CustomerService {
 
     private final CustomerRepository customerRepository;
     private final CustomerMapper customerMapper;
@@ -43,7 +44,7 @@ public class ICustomerService implements CustomerService{
     @Override
     public Customer getCustomerById(long id) {
         Optional<Customer> customer = this.customerRepository.findById(id);
-        if(customer.isPresent()) {
+        if (customer.isPresent()) {
             return customer.get();
         }
         return null;
@@ -52,7 +53,7 @@ public class ICustomerService implements CustomerService{
     @Override
     public ResGetCustomerDTO convertToResGetCustomerDTO(long id) {
         Customer customer = this.getCustomerById(id);
-        if(customer != null) {
+        if (customer != null) {
             ResGetCustomerDTO resGetCustomerDTO = this.customerMapper.toGetCustomerDTO(customer);
             return resGetCustomerDTO;
         }
@@ -63,9 +64,9 @@ public class ICustomerService implements CustomerService{
     public ResPaginationDTO getAllCustomer(Specification<Customer> spec, Pageable pageable) {
         Page<Customer> customers = this.customerRepository.findAll(spec, pageable);
         List<ResGetCustomerDTO> customerList = customers.getContent()
-                    .stream()
-                    .map(customer -> this.customerMapper.toGetCustomerDTO(customer))
-                    .collect(Collectors.toList());
+                .stream()
+                .map(customer -> this.customerMapper.toGetCustomerDTO(customer))
+                .collect(Collectors.toList());
         ResPaginationDTO res = new ResPaginationDTO();
         ResPaginationDTO.Meta meta = ResPaginationDTO.addMeta(customers, pageable);
         res.setData(customerList);
@@ -74,12 +75,14 @@ public class ICustomerService implements CustomerService{
     }
 
     @Override
-    public Customer updateCustomer(Customer customer){
-        Customer currentCustomer = this.customerMapper.toCustomer(customer);
-        if(currentCustomer != null) {
-            currentCustomer.setId(customer.getId());
-            currentCustomer.setUpdatedAt(customer.getUpdatedAt());
-            currentCustomer.setUpdatedBy(customer.getUpdatedBy());
+    public Customer updateCustomer(Customer customer) {
+        Customer currentCustomer = this.getCustomerById(customer.getId());
+        if (currentCustomer != null) {
+            Timestamp createdAt = currentCustomer.getCreatedAt();
+            String createdBy = currentCustomer.getCreatedBy();
+            currentCustomer = this.customerMapper.toCustomer(customer);
+            currentCustomer.setCreatedAt(createdAt);
+            currentCustomer.setCreatedBy(createdBy);
             return this.customerRepository.save(currentCustomer);
         }
         return null;

@@ -19,12 +19,11 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
-
 
 @RestController
 @RequestMapping("/api/v1")
@@ -44,9 +43,9 @@ public class PaymentTypeController {
     }
 
     @GetMapping("/paymentTypes/{id}")
-    @ApiMessage(message = "Xem chi tiết loại thanh toán")
+    @ApiMessage(message = "Xem chi tiết loại hình thanh toán")
     public ResponseEntity<ResGetPaymentDTO> getMethodName(@PathVariable("id") long id) throws IdInvalidException {
-        if(paymentTypeService.checkExistId(id) == false) {
+        if (paymentTypeService.checkExistId(id) == false) {
             throw new IdInvalidException("Id không tồn tại");
         }
         PaymentType paymentType = paymentTypeService.getPaymentTypeById(id);
@@ -56,14 +55,19 @@ public class PaymentTypeController {
 
     @GetMapping("/paymentTypes")
     @ApiMessage(message = "Xem danh sách loại thanh toán")
-    public ResponseEntity<ResPaginationDTO> getAllPaymentTypes(@Filter Specification<PaymentType> spec, Pageable pageable) {
+    public ResponseEntity<ResPaginationDTO> getAllPaymentTypes(@Filter Specification<PaymentType> spec,
+            Pageable pageable) {
         ResPaginationDTO resPaginationDTO = paymentTypeService.getAllPaymentType(spec, pageable);
         return ResponseEntity.ok().body(resPaginationDTO);
     }
 
-    @PostMapping("/paymentTypes")
+    @PutMapping("/paymentTypes")
     @ApiMessage(message = "Cập nhật loại thanh toán")
-    public ResponseEntity<ResUpdatePaymentDTO> updatePaymentTypes(@RequestBody PaymentType paymentType) {
+    public ResponseEntity<ResUpdatePaymentDTO> updatePaymentTypes(@RequestBody PaymentType paymentType)
+            throws IdInvalidException {
+        if (paymentTypeService.checkExistId(paymentType.getId()) == false) {
+            throw new IdInvalidException("Id không tồn tại");
+        }
         PaymentType currentPaymentType = paymentTypeService.updatePaymentType(paymentType);
         ResUpdatePaymentDTO resUpdatePaymentDTO = paymentTypeService.convertToResUpdatePaymentDTO(currentPaymentType);
         return ResponseEntity.ok().body(resUpdatePaymentDTO);
@@ -71,8 +75,9 @@ public class PaymentTypeController {
 
     @DeleteMapping("/paymentTypes/{id}")
     @ApiMessage(message = "Xóa loại thanh toán")
-    public ResponseEntity<Void> deletePaymentTypes(@PathVariable("id") long id) throws IdInvalidException {
-        if(paymentTypeService.checkExistId(id) == false) {
+    public ResponseEntity<Void> deletePaymentTypes(@PathVariable("id") long id)
+            throws IdInvalidException {
+        if (paymentTypeService.checkExistId(id) == false) {
             throw new IdInvalidException("Id không tồn tại");
         }
         paymentTypeService.deletePaymentType(id);

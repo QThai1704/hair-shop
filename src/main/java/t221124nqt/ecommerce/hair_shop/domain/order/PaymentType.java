@@ -8,6 +8,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -38,4 +40,16 @@ public class PaymentType {
     // Hibernate mappings
     @OneToMany(mappedBy = "paymentType")
     List<Order> orders;
+
+    @PrePersist
+    public void prePersist() {
+        this.createdAt = new Timestamp(System.currentTimeMillis());
+        this.createdBy = "Hệ thống";
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        this.updatedAt = new Timestamp(System.currentTimeMillis());
+        this.updatedBy = "Hệ thống";
+    }
 }

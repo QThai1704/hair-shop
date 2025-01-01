@@ -12,6 +12,7 @@ import t221124nqt.ecommerce.hair_shop.domain.response.permission.ResGetPermissio
 import t221124nqt.ecommerce.hair_shop.domain.response.permission.ResUpdatePermissionDTO;
 import t221124nqt.ecommerce.hair_shop.service.imp.IPermissionService;
 import t221124nqt.ecommerce.hair_shop.util.anotation.ApiMessage;
+import t221124nqt.ecommerce.hair_shop.util.exception.IdInvalidException;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -36,7 +37,7 @@ public class PermissionController {
     @PostMapping("/permissions")
     @ApiMessage(message = "Tạo quyền")
     public ResponseEntity<ResCreatePermissionDTO> createPermission(@RequestBody Permission permission) {
-        if(this.permissionService.checkExistName(permission.getName())) {
+        if (this.permissionService.checkExistName(permission.getName())) {
             throw new RuntimeException("Đã tồn tại quyền: " + permission.getName());
         }
         Permission newPermission = this.permissionService.createPermission(permission);
@@ -48,7 +49,7 @@ public class PermissionController {
     @GetMapping("/permissions/{id}")
     @ApiMessage(message = "Tìm kiếm quyền")
     public ResponseEntity<ResGetPermissionDTO> getMethodName(@PathVariable("id") long id) {
-        if(!this.permissionService.checkExistId(id)) {
+        if (!this.permissionService.checkExistId(id)) {
             throw new RuntimeException("Không tìm thấy quyền với id: " + id);
         }
         Permission findPermissionById = this.permissionService.getPermissionById(id);
@@ -65,7 +66,10 @@ public class PermissionController {
 
     @PutMapping("/permissions")
     @ApiMessage(message = "Cập nhật quyền")
-    public ResponseEntity<ResUpdatePermissionDTO> updatePermission(@RequestBody Permission permission) {
+    public ResponseEntity<ResUpdatePermissionDTO> updatePermission(@RequestBody Permission permission) throws IdInvalidException {
+        if (this.permissionService.checkExistId(permission.getId()) == false) {
+            throw new IdInvalidException("Không tồn tại id");
+        }
         Permission updatePermission = this.permissionService.updatePermission(permission);
         ResUpdatePermissionDTO resUpdatePermissionDTO = this.permissionService
                 .convertToResUpdatePermissionDTO(updatePermission);
@@ -75,7 +79,7 @@ public class PermissionController {
     @DeleteMapping("/permissions/{id}")
     @ApiMessage(message = "Xóa quyền")
     public ResponseEntity<Void> deletePermission(@PathVariable("id") long id) {
-        if(!this.permissionService.checkExistId(id)) {
+        if (!this.permissionService.checkExistId(id)) {
             throw new RuntimeException("Không tìm thấy quyền");
         }
         this.permissionService.deletePermission(id);
