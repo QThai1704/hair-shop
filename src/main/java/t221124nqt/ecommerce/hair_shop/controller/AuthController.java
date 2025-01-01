@@ -113,6 +113,7 @@ public class AuthController {
 
     @PostMapping("/auth/logout")
     @ApiMessage(message = "Đăng xuất")
+    @SuppressWarnings("null")
     public ResponseEntity<Void> postLogout() throws EmailException {
         User user = this.userService.getUserInSecurityContext();
         String username = user.getUsername();

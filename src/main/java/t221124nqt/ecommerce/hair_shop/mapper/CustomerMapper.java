@@ -1,7 +1,6 @@
 package t221124nqt.ecommerce.hair_shop.mapper;
 
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 import t221124nqt.ecommerce.hair_shop.domain.order.Customer;

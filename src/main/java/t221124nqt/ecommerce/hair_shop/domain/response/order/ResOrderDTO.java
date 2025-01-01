@@ -29,7 +29,7 @@ public class ResOrderDTO {
     @Getter
     @Setter
     @FieldDefaults(level = AccessLevel.PRIVATE)
-    public static class UserRes{
+    public static class UserRes {
         String firstName;
         String lastName;
     }
@@ -37,7 +37,7 @@ public class ResOrderDTO {
     @Getter
     @Setter
     @FieldDefaults(level = AccessLevel.PRIVATE)
-    public static class CustomerRes{
+    public static class CustomerRes {
         String firstName;
         String lastName;
     }
@@ -45,7 +45,7 @@ public class ResOrderDTO {
     @Getter
     @Setter
     @FieldDefaults(level = AccessLevel.PRIVATE)
-    public static class PaymentTypeRes{
-        String name;
+    public static class PaymentTypeRes {
+        String paymentName;
     }
 }

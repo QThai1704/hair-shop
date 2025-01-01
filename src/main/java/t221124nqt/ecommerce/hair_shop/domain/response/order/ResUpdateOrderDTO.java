@@ -10,8 +10,7 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class ResUpdateOrderDTO extends ResOrderDTO{
+public class ResUpdateOrderDTO extends ResOrderDTO {
     long id;
     Timestamp updatedAt;
-    String updatedBy;
 }

@@ -24,15 +24,21 @@ public class ResOrderDetailDTO {
     @Getter
     @Setter
     @FieldDefaults(level = AccessLevel.PRIVATE)
-    public static class OrderRes{
-        
+    public static class OrderRes {
+        String shipName;
+        String shipAddress;
+        String shipCity;
+        String shipState;
+        String shipPostalCode;
+        String shipCountry;
+        String shippingFee;
     }
 
     @Getter
     @Setter
     @FieldDefaults(level = AccessLevel.PRIVATE)
-    public static class ProductRes{
-
+    public static class ProductRes {
+        String name;
     }
 
 }

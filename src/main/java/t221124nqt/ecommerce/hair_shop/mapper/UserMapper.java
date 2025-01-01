@@ -16,6 +16,7 @@ import t221124nqt.ecommerce.hair_shop.domain.response.user.ResUpdateUserDTO;
 import t221124nqt.ecommerce.hair_shop.domain.response.user.ResUserDTO;
 
 @Mapper(componentModel = "spring")
+@SuppressWarnings("all")
 public interface UserMapper {
     UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
 

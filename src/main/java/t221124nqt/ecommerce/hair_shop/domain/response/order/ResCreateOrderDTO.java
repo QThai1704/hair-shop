@@ -10,7 +10,6 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class ResCreateOrderDTO extends ResOrderDTO{
+public class ResCreateOrderDTO extends ResOrderDTO {
     Timestamp createdAt;
-    String createdBy;
 }

@@ -12,8 +12,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import t221124nqt.ecommerce.hair_shop.domain.response.other.ResGlobalDTO;
 import t221124nqt.ecommerce.hair_shop.util.anotation.ApiMessage;
 
-
 @ControllerAdvice
+@SuppressWarnings("all")
 public class FormattedResponseSucces implements ResponseBodyAdvice<Object> {
 
     @Override
