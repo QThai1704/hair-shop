@@ -11,11 +11,11 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import t221124nqt.ecommerce.hair_shop.domain.auth.Permission;
-import t221124nqt.ecommerce.hair_shop.domain.response.other.ResPaginationDTO;
-import t221124nqt.ecommerce.hair_shop.domain.response.permission.ResCreatePermissionDTO;
-import t221124nqt.ecommerce.hair_shop.domain.response.permission.ResGetPermissionDTO;
-import t221124nqt.ecommerce.hair_shop.domain.response.permission.ResUpdatePermissionDTO;
-import t221124nqt.ecommerce.hair_shop.mapper.PermissionMapper;
+import t221124nqt.ecommerce.hair_shop.dto.response.auth.permission.ResCreatePermissionDTO;
+import t221124nqt.ecommerce.hair_shop.dto.response.auth.permission.ResGetPermissionDTO;
+import t221124nqt.ecommerce.hair_shop.dto.response.auth.permission.ResUpdatePermissionDTO;
+import t221124nqt.ecommerce.hair_shop.dto.response.other.ResPaginationDTO;
+import t221124nqt.ecommerce.hair_shop.mapper.auth.PermissionMapper;
 import t221124nqt.ecommerce.hair_shop.repository.PermissionRepository;
 import t221124nqt.ecommerce.hair_shop.service.PermissionService;
 

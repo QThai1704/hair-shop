@@ -4,10 +4,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 
 import t221124nqt.ecommerce.hair_shop.domain.order.PaymentType;
-import t221124nqt.ecommerce.hair_shop.domain.response.other.ResPaginationDTO;
-import t221124nqt.ecommerce.hair_shop.domain.response.paymentType.ResCreatePaymentDTO;
-import t221124nqt.ecommerce.hair_shop.domain.response.paymentType.ResGetPaymentDTO;
-import t221124nqt.ecommerce.hair_shop.domain.response.paymentType.ResUpdatePaymentDTO;
+import t221124nqt.ecommerce.hair_shop.dto.response.order.paymentType.ResCreatePaymentDTO;
+import t221124nqt.ecommerce.hair_shop.dto.response.order.paymentType.ResGetPaymentDTO;
+import t221124nqt.ecommerce.hair_shop.dto.response.order.paymentType.ResUpdatePaymentDTO;
+import t221124nqt.ecommerce.hair_shop.dto.response.other.ResPaginationDTO;
 
 public interface PaymentTypeService {
     PaymentType createPaymentType(PaymentType paymentType);

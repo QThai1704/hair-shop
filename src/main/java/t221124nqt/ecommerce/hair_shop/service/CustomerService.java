@@ -4,10 +4,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 
 import t221124nqt.ecommerce.hair_shop.domain.order.Customer;
-import t221124nqt.ecommerce.hair_shop.domain.response.customer.ResCreateCustomerDTO;
-import t221124nqt.ecommerce.hair_shop.domain.response.customer.ResGetCustomerDTO;
-import t221124nqt.ecommerce.hair_shop.domain.response.customer.ResUpdateCustomerDTO;
-import t221124nqt.ecommerce.hair_shop.domain.response.other.ResPaginationDTO;
+import t221124nqt.ecommerce.hair_shop.dto.response.order.customer.ResCreateCustomerDTO;
+import t221124nqt.ecommerce.hair_shop.dto.response.order.customer.ResGetCustomerDTO;
+import t221124nqt.ecommerce.hair_shop.dto.response.order.customer.ResUpdateCustomerDTO;
+import t221124nqt.ecommerce.hair_shop.dto.response.other.ResPaginationDTO;
 
 public interface CustomerService {
     Customer createCustomer(Customer customer);

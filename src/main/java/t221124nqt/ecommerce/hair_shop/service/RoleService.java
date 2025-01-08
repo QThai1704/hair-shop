@@ -4,10 +4,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 
 import t221124nqt.ecommerce.hair_shop.domain.auth.Role;
-import t221124nqt.ecommerce.hair_shop.domain.response.other.ResPaginationDTO;
-import t221124nqt.ecommerce.hair_shop.domain.response.role.ResCreateRoleDTO;
-import t221124nqt.ecommerce.hair_shop.domain.response.role.ResGetRoleDTO;
-import t221124nqt.ecommerce.hair_shop.domain.response.role.ResUpdateRoleDTO;
+import t221124nqt.ecommerce.hair_shop.dto.response.auth.role.ResCreateRoleDTO;
+import t221124nqt.ecommerce.hair_shop.dto.response.auth.role.ResGetRoleDTO;
+import t221124nqt.ecommerce.hair_shop.dto.response.auth.role.ResUpdateRoleDTO;
+import t221124nqt.ecommerce.hair_shop.dto.response.other.ResPaginationDTO;
 import t221124nqt.ecommerce.hair_shop.util.exception.IdInvalidException;
 
 public interface RoleService {

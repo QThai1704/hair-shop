@@ -14,10 +14,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import t221124nqt.ecommerce.hair_shop.domain.response.other.ResGlobalDTO;
+import t221124nqt.ecommerce.hair_shop.dto.response.other.ResGlobalDTO;
 
 @Component
-public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint{
+public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint {
     private final AuthenticationEntryPoint delegate = new BearerTokenAuthenticationEntryPoint();
 
     private final ObjectMapper mapper;
@@ -38,7 +38,7 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint{
                 .map(Throwable::getMessage)
                 .orElse(authException.getMessage());
         res.setError(errorMessage);
-        res.setMessage("Token không hợp lệ (hết hạn, không đúng định dạng hoặc không tồn tại)");
+        res.setMessage("Token không hợp lệ (hết hạn, không đúng định dạng hoặc không tồn tại)!");
         mapper.writeValue(response.getWriter(), res);
     }
 }

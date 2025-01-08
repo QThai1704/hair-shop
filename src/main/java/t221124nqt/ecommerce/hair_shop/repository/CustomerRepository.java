@@ -1,6 +1,5 @@
 package t221124nqt.ecommerce.hair_shop.repository;
 
-
 import t221124nqt.ecommerce.hair_shop.domain.order.Customer;
 
 import org.springframework.data.domain.Page;
@@ -11,9 +10,12 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 @Repository
+@SuppressWarnings("null")
 public interface CustomerRepository extends JpaRepository<Customer, Long>,
-    JpaSpecificationExecutor<Customer> {
+        JpaSpecificationExecutor<Customer> {
     boolean existsByEmail(String email);
+
     boolean existsById(long id);
-    Page<Customer> findAll(Specification<Customer> spec ,Pageable pageable);
+
+    Page<Customer> findAll(Specification<Customer> spec, Pageable pageable);
 }

@@ -10,10 +10,13 @@ import org.springframework.stereotype.Repository;
 import t221124nqt.ecommerce.hair_shop.domain.auth.Role;
 
 @Repository
+@SuppressWarnings("null")
 public interface RoleRepository extends JpaRepository<Role, Long>,
-    JpaSpecificationExecutor<Role> {
+        JpaSpecificationExecutor<Role> {
     // Role findByUser(String username);
     Page<Role> findAll(Specification<Role> spec, Pageable pageable);
+
     boolean existsById(long id);
+
     boolean existsByName(String name);
 }

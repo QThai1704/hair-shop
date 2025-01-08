@@ -11,7 +11,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import t221124nqt.ecommerce.hair_shop.domain.response.other.ResGlobalDTO;
+import t221124nqt.ecommerce.hair_shop.dto.response.other.ResGlobalDTO;
 import t221124nqt.ecommerce.hair_shop.util.exception.CommonException;
 import t221124nqt.ecommerce.hair_shop.util.exception.EmailException;
 import t221124nqt.ecommerce.hair_shop.util.exception.IdInvalidException;

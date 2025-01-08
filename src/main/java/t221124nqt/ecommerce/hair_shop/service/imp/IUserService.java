@@ -16,18 +16,21 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 
-import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import t221124nqt.ecommerce.hair_shop.constant.StatusEnum;
+import t221124nqt.ecommerce.hair_shop.domain.auth.Permission;
+import t221124nqt.ecommerce.hair_shop.domain.auth.Role;
 import t221124nqt.ecommerce.hair_shop.domain.auth.User;
-import t221124nqt.ecommerce.hair_shop.domain.request.auth.ReqRegisterDTO;
-import t221124nqt.ecommerce.hair_shop.domain.request.user.ReqCreateUserDTO;
-import t221124nqt.ecommerce.hair_shop.domain.request.user.ReqUpdateUserDTO;
-import t221124nqt.ecommerce.hair_shop.domain.response.other.ResPaginationDTO;
-import t221124nqt.ecommerce.hair_shop.domain.response.user.ResCreateUserDTO;
-import t221124nqt.ecommerce.hair_shop.domain.response.user.ResGetUserDTO;
-import t221124nqt.ecommerce.hair_shop.domain.response.user.ResUpdateUserDTO;
-import t221124nqt.ecommerce.hair_shop.mapper.UserMapper;
+import t221124nqt.ecommerce.hair_shop.dto.request.auth.ReqRegisterDTO;
+import t221124nqt.ecommerce.hair_shop.dto.request.auth.user.ReqCreateUserDTO;
+import t221124nqt.ecommerce.hair_shop.dto.request.auth.user.ReqUpdateUserDTO;
+import t221124nqt.ecommerce.hair_shop.dto.response.auth.user.ResCreateUserDTO;
+import t221124nqt.ecommerce.hair_shop.dto.response.auth.user.ResGetUserDTO;
+import t221124nqt.ecommerce.hair_shop.dto.response.auth.user.ResUpdateUserDTO;
+import t221124nqt.ecommerce.hair_shop.dto.response.other.ResPaginationDTO;
+import t221124nqt.ecommerce.hair_shop.mapper.auth.UserMapper;
+import t221124nqt.ecommerce.hair_shop.repository.PermissionRepository;
+import t221124nqt.ecommerce.hair_shop.repository.RoleRepository;
 import t221124nqt.ecommerce.hair_shop.repository.UserRepository;
 import t221124nqt.ecommerce.hair_shop.service.UserService;
 import t221124nqt.ecommerce.hair_shop.util.exception.EmailException;
@@ -39,11 +42,16 @@ public class IUserService implements UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
+    private final RoleRepository roleRepository;
+    private final PermissionRepository permissionRepository;
 
-    public IUserService(UserRepository userRepository, UserMapper userMapper, PasswordEncoder passwordEncoder) {
+    public IUserService(UserRepository userRepository, UserMapper userMapper, PasswordEncoder passwordEncoder,
+            RoleRepository roleRepository, PermissionRepository permissionRepository) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
         this.passwordEncoder = passwordEncoder;
+        this.roleRepository = roleRepository;
+        this.permissionRepository = permissionRepository;
     }
 
     @Override
@@ -53,8 +61,18 @@ public class IUserService implements UserService {
     }
 
     @Override
-    public ResCreateUserDTO convertToResCreateUserDTO(@Valid User user) {
+    public ResCreateUserDTO convertToResCreateUserDTO(User user) {
+        List<Role> roles = user.getRoles().stream().map(role -> this.roleRepository.findById(role.getId()).get())
+                .collect(Collectors.toList());
+        List<ResCreateUserDTO.RoleUser> roleName = this.userMapper.toRoleUserList(roles);
+        List<Permission> permissions = user.getPermissions().stream()
+                .map(permission -> this.permissionRepository.findById(permission.getId()).get())
+                .collect(Collectors.toList());
+        List<ResCreateUserDTO.PermissionUser> permissionName = this.userMapper
+                .toPermissionUserList(permissions);
         ResCreateUserDTO resCreateUserDTO = this.userMapper.toCreateUserDTO(user);
+        resCreateUserDTO.setRoles(roleName);
+        resCreateUserDTO.setPermissions(permissionName);
         return resCreateUserDTO;
     }
 
@@ -78,11 +96,18 @@ public class IUserService implements UserService {
 
     @Override
     public ResUpdateUserDTO convertToResUpdateUserDTO(User currentUser) {
-        if (currentUser != null) {
-            ResUpdateUserDTO resUpdateUserDTO = this.userMapper.toUpdateUserDTO(currentUser);
-            return resUpdateUserDTO;
-        }
-        return null;
+        List<Role> roles = currentUser.getRoles().stream().map(role -> this.roleRepository.findById(role.getId()).get())
+                .collect(Collectors.toList());
+        List<ResUpdateUserDTO.RoleUser> roleName = this.userMapper.toRoleUserList(roles);
+        List<Permission> permissions = currentUser.getPermissions().stream()
+                .map(permission -> this.permissionRepository.findById(permission.getId()).get())
+                .collect(Collectors.toList());
+        List<ResUpdateUserDTO.PermissionUser> permissionName = this.userMapper
+                .toPermissionUserList(permissions);
+        ResUpdateUserDTO resUpdateUserDTO = this.userMapper.toUpdateUserDTO(currentUser);
+        resUpdateUserDTO.setRoles(roleName);
+        resUpdateUserDTO.setPermissions(permissionName);
+        return resUpdateUserDTO;
     }
 
     @Override

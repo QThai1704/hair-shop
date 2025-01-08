@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 import jakarta.servlet.http.HttpServletResponse;
-import t221124nqt.ecommerce.hair_shop.domain.response.other.ResGlobalDTO;
+import t221124nqt.ecommerce.hair_shop.dto.response.other.ResGlobalDTO;
 import t221124nqt.ecommerce.hair_shop.util.anotation.ApiMessage;
 
 @ControllerAdvice

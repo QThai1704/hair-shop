@@ -11,11 +11,11 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import t221124nqt.ecommerce.hair_shop.domain.order.Customer;
-import t221124nqt.ecommerce.hair_shop.domain.response.customer.ResCreateCustomerDTO;
-import t221124nqt.ecommerce.hair_shop.domain.response.customer.ResGetCustomerDTO;
-import t221124nqt.ecommerce.hair_shop.domain.response.customer.ResUpdateCustomerDTO;
-import t221124nqt.ecommerce.hair_shop.domain.response.other.ResPaginationDTO;
-import t221124nqt.ecommerce.hair_shop.mapper.CustomerMapper;
+import t221124nqt.ecommerce.hair_shop.dto.response.order.customer.ResCreateCustomerDTO;
+import t221124nqt.ecommerce.hair_shop.dto.response.order.customer.ResGetCustomerDTO;
+import t221124nqt.ecommerce.hair_shop.dto.response.order.customer.ResUpdateCustomerDTO;
+import t221124nqt.ecommerce.hair_shop.dto.response.other.ResPaginationDTO;
+import t221124nqt.ecommerce.hair_shop.mapper.order.CustomerMapper;
 import t221124nqt.ecommerce.hair_shop.repository.CustomerRepository;
 import t221124nqt.ecommerce.hair_shop.service.CustomerService;
 

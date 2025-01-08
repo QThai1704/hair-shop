@@ -42,11 +42,10 @@ public class Product {
     long discontinued;
     boolean isFeatured;
     boolean isNew;
-    Timestamp createAt;
-    Timestamp updateAt;
+    Timestamp createdAt;
+    Timestamp updatedAt;
 
     // Hibernate mappings
-    // category_id,
     @ManyToOne
     @JoinColumn(name = "category_id")
     ProductCategory productCategory;

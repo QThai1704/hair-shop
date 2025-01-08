@@ -5,10 +5,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 
 import t221124nqt.ecommerce.hair_shop.domain.order.OrderDetail;
-import t221124nqt.ecommerce.hair_shop.domain.response.orderDetail.ResCreateOrderDetailDTO;
-import t221124nqt.ecommerce.hair_shop.domain.response.orderDetail.ResGetOrderDetailDTO;
-import t221124nqt.ecommerce.hair_shop.domain.response.orderDetail.ResUpdateOrderDetailDTO;
-import t221124nqt.ecommerce.hair_shop.domain.response.other.ResPaginationDTO;
+import t221124nqt.ecommerce.hair_shop.dto.response.order.orderDetail.ResCreateOrderDetailDTO;
+import t221124nqt.ecommerce.hair_shop.dto.response.order.orderDetail.ResGetOrderDetailDTO;
+import t221124nqt.ecommerce.hair_shop.dto.response.order.orderDetail.ResUpdateOrderDetailDTO;
+import t221124nqt.ecommerce.hair_shop.dto.response.other.ResPaginationDTO;
 
 public interface OrderDetailService {
     OrderDetail createOrderDetail(OrderDetail orderDetail);

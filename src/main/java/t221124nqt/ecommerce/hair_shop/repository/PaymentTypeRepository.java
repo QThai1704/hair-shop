@@ -11,6 +11,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 @Repository
+@SuppressWarnings("null")
 public interface PaymentTypeRepository extends JpaRepository<PaymentType, Long>,
         JpaSpecificationExecutor<PaymentType> {
     Page<PaymentType> findAll(Specification<PaymentType> spec, Pageable pageable);

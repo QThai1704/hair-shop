@@ -11,11 +11,11 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import t221124nqt.ecommerce.hair_shop.domain.auth.Role;
-import t221124nqt.ecommerce.hair_shop.domain.response.other.ResPaginationDTO;
-import t221124nqt.ecommerce.hair_shop.domain.response.role.ResCreateRoleDTO;
-import t221124nqt.ecommerce.hair_shop.domain.response.role.ResGetRoleDTO;
-import t221124nqt.ecommerce.hair_shop.domain.response.role.ResUpdateRoleDTO;
-import t221124nqt.ecommerce.hair_shop.mapper.RoleMapper;
+import t221124nqt.ecommerce.hair_shop.dto.response.auth.role.ResCreateRoleDTO;
+import t221124nqt.ecommerce.hair_shop.dto.response.auth.role.ResGetRoleDTO;
+import t221124nqt.ecommerce.hair_shop.dto.response.auth.role.ResUpdateRoleDTO;
+import t221124nqt.ecommerce.hair_shop.dto.response.other.ResPaginationDTO;
+import t221124nqt.ecommerce.hair_shop.mapper.auth.RoleMapper;
 import t221124nqt.ecommerce.hair_shop.repository.RoleRepository;
 import t221124nqt.ecommerce.hair_shop.service.RoleService;
 import t221124nqt.ecommerce.hair_shop.util.exception.IdInvalidException;
