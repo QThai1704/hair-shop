@@ -42,8 +42,8 @@ public class Voucher {
 
     // Hibernate mappings
     @OneToMany(mappedBy = "voucher")
-    List<ProductVoucher> productVouchers;
+    List<VoucherProduct> productVouchers;
 
     @OneToMany(mappedBy = "voucher")
-    List<CustomerVoucher> customerVouchers;
+    List<VoucherCustomer> customerVouchers;
 }

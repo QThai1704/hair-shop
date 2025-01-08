@@ -20,7 +20,7 @@ import t221124nqt.ecommerce.hair_shop.dto.response.order.orderDetail.ResCreateOr
 import t221124nqt.ecommerce.hair_shop.dto.response.order.orderDetail.ResGetOrderDetailDTO;
 import t221124nqt.ecommerce.hair_shop.dto.response.order.orderDetail.ResUpdateOrderDetailDTO;
 import t221124nqt.ecommerce.hair_shop.dto.response.other.ResPaginationDTO;
-import t221124nqt.ecommerce.hair_shop.service.imp.IOrderDetailService;
+import t221124nqt.ecommerce.hair_shop.service.imp.order.IOrderDetailService;
 import t221124nqt.ecommerce.hair_shop.util.anotation.ApiMessage;
 import t221124nqt.ecommerce.hair_shop.util.exception.IdInvalidException;
 import org.springframework.web.bind.annotation.PutMapping;

@@ -10,7 +10,7 @@ import t221124nqt.ecommerce.hair_shop.dto.request.auth.ReqLoginDTO;
 import t221124nqt.ecommerce.hair_shop.dto.request.auth.ReqRegisterDTO;
 import t221124nqt.ecommerce.hair_shop.dto.response.auth.ResLoginDTO;
 import t221124nqt.ecommerce.hair_shop.dto.response.auth.user.ResCreateUserDTO;
-import t221124nqt.ecommerce.hair_shop.service.imp.IUserService;
+import t221124nqt.ecommerce.hair_shop.service.imp.auth.IUserService;
 import t221124nqt.ecommerce.hair_shop.util.SecurityUtil;
 import t221124nqt.ecommerce.hair_shop.util.anotation.ApiMessage;
 import t221124nqt.ecommerce.hair_shop.util.exception.CommonException;

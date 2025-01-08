@@ -30,7 +30,7 @@ import lombok.experimental.FieldDefaults;
 import t221124nqt.ecommerce.hair_shop.constant.GenderEnum;
 import t221124nqt.ecommerce.hair_shop.constant.StatusEnum;
 import t221124nqt.ecommerce.hair_shop.domain.product.ProductReview;
-import t221124nqt.ecommerce.hair_shop.domain.voucher.CustomerVoucher;
+import t221124nqt.ecommerce.hair_shop.domain.voucher.VoucherCustomer;
 
 @Getter
 @Setter
@@ -87,7 +87,7 @@ public class Customer {
     List<ProductReview> productReviews;
 
     @OneToMany(mappedBy = "customer")
-    List<CustomerVoucher> customerVouchers;
+    List<VoucherCustomer> customerVouchers;
 
     @PrePersist
     public void prePersist() {

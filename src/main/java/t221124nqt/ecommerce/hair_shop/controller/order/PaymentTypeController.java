@@ -10,7 +10,7 @@ import t221124nqt.ecommerce.hair_shop.dto.response.order.paymentType.ResCreatePa
 import t221124nqt.ecommerce.hair_shop.dto.response.order.paymentType.ResGetPaymentDTO;
 import t221124nqt.ecommerce.hair_shop.dto.response.order.paymentType.ResUpdatePaymentDTO;
 import t221124nqt.ecommerce.hair_shop.dto.response.other.ResPaginationDTO;
-import t221124nqt.ecommerce.hair_shop.service.imp.IPaymentTypeService;
+import t221124nqt.ecommerce.hair_shop.service.imp.order.IPaymentTypeService;
 import t221124nqt.ecommerce.hair_shop.util.anotation.ApiMessage;
 import t221124nqt.ecommerce.hair_shop.util.exception.IdInvalidException;
 

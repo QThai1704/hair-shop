@@ -13,7 +13,7 @@ import t221124nqt.ecommerce.hair_shop.dto.response.auth.user.ResCreateUserDTO;
 import t221124nqt.ecommerce.hair_shop.dto.response.auth.user.ResGetUserDTO;
 import t221124nqt.ecommerce.hair_shop.dto.response.auth.user.ResUpdateUserDTO;
 import t221124nqt.ecommerce.hair_shop.dto.response.other.ResPaginationDTO;
-import t221124nqt.ecommerce.hair_shop.service.imp.IUserService;
+import t221124nqt.ecommerce.hair_shop.service.imp.auth.IUserService;
 import t221124nqt.ecommerce.hair_shop.util.anotation.ApiMessage;
 import t221124nqt.ecommerce.hair_shop.util.exception.EmailException;
 import t221124nqt.ecommerce.hair_shop.util.exception.IdInvalidException;

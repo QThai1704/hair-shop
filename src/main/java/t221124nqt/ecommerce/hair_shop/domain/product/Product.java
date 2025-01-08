@@ -19,7 +19,7 @@ import lombok.experimental.FieldDefaults;
 import t221124nqt.ecommerce.hair_shop.domain.order.OrderDetail;
 import t221124nqt.ecommerce.hair_shop.domain.store.StoreExportDetail;
 import t221124nqt.ecommerce.hair_shop.domain.store.StoreImportDetail;
-import t221124nqt.ecommerce.hair_shop.domain.voucher.ProductVoucher;
+import t221124nqt.ecommerce.hair_shop.domain.voucher.VoucherProduct;
 
 @Data
 @AllArgsConstructor
@@ -73,5 +73,5 @@ public class Product {
     List<OrderDetail> orderDetails;
 
     @OneToMany(mappedBy = "product")
-    List<ProductVoucher> productVouchers;
+    List<VoucherProduct> productVouchers;
 }

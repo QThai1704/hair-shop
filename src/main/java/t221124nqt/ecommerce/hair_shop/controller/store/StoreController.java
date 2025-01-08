@@ -21,7 +21,7 @@ import t221124nqt.ecommerce.hair_shop.dto.response.other.ResPaginationDTO;
 import t221124nqt.ecommerce.hair_shop.dto.response.store.ResCreateStoreDTO;
 import t221124nqt.ecommerce.hair_shop.dto.response.store.ResGetStoreDTO;
 import t221124nqt.ecommerce.hair_shop.dto.response.store.ResUpdateStoreDTO;
-import t221124nqt.ecommerce.hair_shop.service.imp.IStoreService;
+import t221124nqt.ecommerce.hair_shop.service.imp.store.IStoreService;
 import t221124nqt.ecommerce.hair_shop.util.anotation.ApiMessage;
 
 @RestController

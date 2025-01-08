@@ -10,7 +10,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
-import t221124nqt.ecommerce.hair_shop.repository.UserRepository;
+
+import t221124nqt.ecommerce.hair_shop.repository.auth.UserRepository;
 
 @Component("userDetailsCustom")
 public class UserDetailsCustom implements UserDetailsService {

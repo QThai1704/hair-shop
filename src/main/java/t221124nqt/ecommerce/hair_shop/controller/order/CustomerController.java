@@ -16,7 +16,7 @@ import t221124nqt.ecommerce.hair_shop.dto.response.order.customer.ResCreateCusto
 import t221124nqt.ecommerce.hair_shop.dto.response.order.customer.ResGetCustomerDTO;
 import t221124nqt.ecommerce.hair_shop.dto.response.order.customer.ResUpdateCustomerDTO;
 import t221124nqt.ecommerce.hair_shop.dto.response.other.ResPaginationDTO;
-import t221124nqt.ecommerce.hair_shop.service.imp.ICustomerService;
+import t221124nqt.ecommerce.hair_shop.service.imp.order.ICustomerService;
 import t221124nqt.ecommerce.hair_shop.util.anotation.ApiMessage;
 import t221124nqt.ecommerce.hair_shop.util.exception.IdInvalidException;
 

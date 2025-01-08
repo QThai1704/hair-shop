@@ -17,7 +17,7 @@ import t221124nqt.ecommerce.hair_shop.dto.response.other.ResPaginationDTO;
 import t221124nqt.ecommerce.hair_shop.dto.response.voucher.ResCreateVoucherDTO;
 import t221124nqt.ecommerce.hair_shop.dto.response.voucher.ResGetVoucherDTO;
 import t221124nqt.ecommerce.hair_shop.dto.response.voucher.ResUpdateVoucherDTO;
-import t221124nqt.ecommerce.hair_shop.service.imp.IVoucherService;
+import t221124nqt.ecommerce.hair_shop.service.imp.voucher.IVoucherService;
 import t221124nqt.ecommerce.hair_shop.util.anotation.ApiMessage;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
