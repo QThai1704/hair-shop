@@ -2,6 +2,7 @@ package t221124nqt.ecommerce.hair_shop.service.auth;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.web.multipart.MultipartFile;
 
 import t221124nqt.ecommerce.hair_shop.constant.StatusEnum;
 import t221124nqt.ecommerce.hair_shop.domain.auth.User;
@@ -39,4 +40,6 @@ public interface UserService {
     User updateRefreshToken(String username, String refreshToken, StatusEnum status) throws EmailException;
 
     User getUserInSecurityContext() throws EmailException;
+
+    void saveUsersToDatabase(MultipartFile file);
 }

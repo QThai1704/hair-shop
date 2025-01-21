@@ -67,10 +67,8 @@ public class User {
     String department;
     String phone;
     String address;
-    String deliveryAddress;
     String city;
     String state;
-    String postalCode;
     String country;
     @Column(columnDefinition = "MEDIUMTEXT")
     String rememberToken;

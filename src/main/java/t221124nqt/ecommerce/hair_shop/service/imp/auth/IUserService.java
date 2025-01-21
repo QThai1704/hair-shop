@@ -1,5 +1,6 @@
 package t221124nqt.ecommerce.hair_shop.service.imp.auth;
 
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
@@ -15,12 +16,15 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import t221124nqt.ecommerce.hair_shop.constant.StatusEnum;
 import t221124nqt.ecommerce.hair_shop.domain.auth.Permission;
 import t221124nqt.ecommerce.hair_shop.domain.auth.Role;
 import t221124nqt.ecommerce.hair_shop.domain.auth.User;
+import t221124nqt.ecommerce.hair_shop.domain.order.Customer;
 import t221124nqt.ecommerce.hair_shop.dto.request.auth.ReqRegisterDTO;
 import t221124nqt.ecommerce.hair_shop.dto.request.auth.user.ReqCreateUserDTO;
 import t221124nqt.ecommerce.hair_shop.dto.request.auth.user.ReqUpdateUserDTO;
@@ -33,10 +37,12 @@ import t221124nqt.ecommerce.hair_shop.repository.auth.PermissionRepository;
 import t221124nqt.ecommerce.hair_shop.repository.auth.RoleRepository;
 import t221124nqt.ecommerce.hair_shop.repository.auth.UserRepository;
 import t221124nqt.ecommerce.hair_shop.service.auth.UserService;
+import t221124nqt.ecommerce.hair_shop.service.imp.file.IUploadFileService;
 import t221124nqt.ecommerce.hair_shop.util.exception.EmailException;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class IUserService implements UserService {
 
     private final UserRepository userRepository;
@@ -44,15 +50,7 @@ public class IUserService implements UserService {
     private final PasswordEncoder passwordEncoder;
     private final RoleRepository roleRepository;
     private final PermissionRepository permissionRepository;
-
-    public IUserService(UserRepository userRepository, UserMapper userMapper, PasswordEncoder passwordEncoder,
-            RoleRepository roleRepository, PermissionRepository permissionRepository) {
-        this.userRepository = userRepository;
-        this.userMapper = userMapper;
-        this.passwordEncoder = passwordEncoder;
-        this.roleRepository = roleRepository;
-        this.permissionRepository = permissionRepository;
-    }
+    private final IUploadFileService uploadFileService;
 
     @Override
     public User createUser(ReqCreateUserDTO user) {
@@ -212,5 +210,17 @@ public class IUserService implements UserService {
             return s;
         }
         return null;
+    }
+
+    @Override
+    public void saveUsersToDatabase(MultipartFile file) {
+        if (uploadFileService.isValidExcelFile(file)) {
+            try {
+                List<User> users = uploadFileService.getUsersDataFromExcel(file.getInputStream());
+                this.userRepository.saveAll(users);
+            } catch (IOException e) {
+                throw new IllegalArgumentException("The file is not a valid excel file");
+            }
+        }
     }
 }

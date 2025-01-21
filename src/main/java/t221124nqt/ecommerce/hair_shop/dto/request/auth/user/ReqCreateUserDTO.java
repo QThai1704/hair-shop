@@ -28,10 +28,8 @@ public class ReqCreateUserDTO {
     String department;
     String phone;
     String address;
-    String deliveryAddress;
     String city;
     String state;
-    String postalCode;
     String country;
     String activeCode;
     List<Role> roles;
