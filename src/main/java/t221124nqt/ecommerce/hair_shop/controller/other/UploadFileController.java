@@ -1,4 +1,4 @@
-package t221124nqt.ecommerce.hair_shop.controller.file;
+package t221124nqt.ecommerce.hair_shop.controller.other;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

@@ -1,5 +1,7 @@
 package t221124nqt.ecommerce.hair_shop.service.auth;
 
+import java.util.List;
+
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.multipart.MultipartFile;
@@ -42,4 +44,6 @@ public interface UserService {
     User getUserInSecurityContext() throws EmailException;
 
     void saveUsersToDatabase(MultipartFile file);
+
+    List<User> getAllUsers();
 }
