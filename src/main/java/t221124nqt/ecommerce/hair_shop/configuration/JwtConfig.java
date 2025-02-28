@@ -1,4 +1,4 @@
-package t221124nqt.ecommerce.hair_shop.config;
+package t221124nqt.ecommerce.hair_shop.configuration;
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
@@ -19,7 +19,7 @@ import t221124nqt.ecommerce.hair_shop.constant.GlobalConstant;
 
 @Configuration
 @EnableMethodSecurity(securedEnabled = true)
-public class JwtConfiguration {
+public class JwtConfig {
     @Value("${hair-shop.jwt.base64-secret}")
     private String base64Secret;
 

@@ -1,4 +1,4 @@
-package t221124nqt.ecommerce.hair_shop.config;
+package t221124nqt.ecommerce.hair_shop.configuration;
 
 import java.util.Arrays;
 
@@ -8,6 +8,11 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+// Có thể sử dụng 4 cách
+// 1. Sử dụng CorsFilter
+// 2. Sử dụng WebMvcConfigurer
+// 3. Sử dụng CorsConfigurationSource
+// 4. OncePerRequestFilter
 @Configuration
 public class CorsConfig {
     // Fix bug cors (bắt buộc fix tại backend)

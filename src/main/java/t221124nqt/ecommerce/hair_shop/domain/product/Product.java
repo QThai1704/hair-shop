@@ -13,17 +13,17 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 import t221124nqt.ecommerce.hair_shop.domain.order.OrderDetail;
 import t221124nqt.ecommerce.hair_shop.domain.store.StoreExportDetail;
 import t221124nqt.ecommerce.hair_shop.domain.store.StoreImportDetail;
 import t221124nqt.ecommerce.hair_shop.domain.voucher.VoucherProduct;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
-@NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "products")
@@ -36,11 +36,17 @@ public class Product {
     String image;
     String shortDescription;
     String description;
+    // Giá nhập vào
     double standardCost;
+    // Giá bán ra
     double listPrice;
+    // Số lượng sản phẩm trong 1 đơn vị (24 lon / thùng)
     double quantityPerUnit;
-    long discontinued;
+    // Hạn sử dụng
+    Timestamp expiryDate;
+    // Flag hàng nổi bật
     boolean isFeatured;
+    // Flag hàng mới
     boolean isNew;
     Timestamp createdAt;
     Timestamp updatedAt;

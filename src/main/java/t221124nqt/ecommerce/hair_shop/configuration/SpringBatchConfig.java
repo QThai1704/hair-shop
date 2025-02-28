@@ -1,4 +1,4 @@
-package t221124nqt.ecommerce.hair_shop.config;
+package t221124nqt.ecommerce.hair_shop.configuration;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -44,8 +44,10 @@ public class SpringBatchConfig {
 
     // Step
     @Bean
-    public Step stepSendMail(JobRepository jobRepository, PlatformTransactionManager transactionManager,
-            ItemReader<User> readerEmail, ItemProcessor<User, User> processorEmail, ItemWriter<User> writerEmail) {
+    public Step stepSendMail(JobRepository jobRepository,
+            PlatformTransactionManager transactionManager,
+            ItemReader<User> readerEmail, ItemProcessor<User, User> processorEmail,
+            ItemWriter<User> writerEmail) {
         System.out.println("stepSendMail");
         return new StepBuilder("stepSendMail", jobRepository)
                 .<User, User>chunk(1000, transactionManager)

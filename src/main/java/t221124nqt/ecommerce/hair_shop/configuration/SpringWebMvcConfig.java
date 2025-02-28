@@ -1,4 +1,4 @@
-package t221124nqt.ecommerce.hair_shop.config;
+package t221124nqt.ecommerce.hair_shop.configuration;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

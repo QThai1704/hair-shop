@@ -5,7 +5,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.turkraft.springfilter.boot.Filter;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import t221124nqt.ecommerce.hair_shop.component.TranslatorComponent;
 import t221124nqt.ecommerce.hair_shop.domain.auth.User;
 import t221124nqt.ecommerce.hair_shop.dto.request.auth.user.ReqCreateUserDTO;
 import t221124nqt.ecommerce.hair_shop.dto.request.auth.user.ReqUpdateUserDTO;
@@ -31,6 +33,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @RequestMapping("/api/v1")
+@Tag(name = "User Controller")
 public class UserController {
     private final IUserService userService;
 
@@ -53,7 +56,7 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    @ApiMessage(message = "Lấy danh sách người dùng")
+    @ApiMessage(message = "Tìm kiếm người dùng")
     public ResponseEntity<ResPaginationDTO> getUserById(@Filter Specification<User> spec, Pageable pageable) {
         ResPaginationDTO resPaginationDTO = this.userService.getAllUsers(spec, pageable);
         return ResponseEntity.ok().body(resPaginationDTO);

@@ -1,0 +1,14 @@
+version: '3.9'
+
+services:
+  api-service:
+    container_name: api-container-hairshop
+    image: api-image-hairshop
+    port:
+      - '8080:8080'
+    networks:
+      - backend
+    
+networks:
+  backend:
+    driver: bridge

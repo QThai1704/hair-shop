@@ -33,7 +33,8 @@ public class EmailReaderItem implements ItemReader<User> {
 
     @Override
     @Nullable
-    public User read() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {
+    public User read() throws Exception, UnexpectedInputException,
+            ParseException, NonTransientResourceException {
         if (count < list.size()) {
             return list.get(count++);
         }

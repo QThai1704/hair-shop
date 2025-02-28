@@ -1,0 +1,5 @@
+# spring:
+#     application:
+#         name: hair-shop-1
+#     profiles:
+#         active: @spring.profiles.active@

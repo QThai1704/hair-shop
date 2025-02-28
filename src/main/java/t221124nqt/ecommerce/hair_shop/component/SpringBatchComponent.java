@@ -19,8 +19,9 @@ public class SpringBatchComponent {
     @Autowired
     private Job sendMailJob;
 
-    @Scheduled(cron = "0/40 * * * * *")
-    public void runBatchEmailJob() throws JobExecutionException, NoSuchJobException {
+    @Scheduled(cron = "* * 9 * * *")
+    public void runBatchEmailJob() throws JobExecutionException,
+            NoSuchJobException {
         JobParameters sendMailJobParameters = new JobParametersBuilder()
                 .addString("uniqueKeySendMailJob", UUID.randomUUID().toString())
                 .toJobParameters();
