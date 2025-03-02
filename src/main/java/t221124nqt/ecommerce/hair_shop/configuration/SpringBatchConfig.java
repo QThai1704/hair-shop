@@ -20,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 import t221124nqt.ecommerce.hair_shop.component.batch.EmailProcessItem;
 import t221124nqt.ecommerce.hair_shop.component.batch.EmailReaderItem;
 import t221124nqt.ecommerce.hair_shop.domain.auth.User;
-import t221124nqt.ecommerce.hair_shop.service.imp.auth.IUserService;
+import t221124nqt.ecommerce.hair_shop.service.auth.IUserService;
 import t221124nqt.ecommerce.hair_shop.util.EmailUtil;
 
 @Configuration

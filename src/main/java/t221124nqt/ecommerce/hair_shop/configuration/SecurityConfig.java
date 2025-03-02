@@ -32,7 +32,8 @@ public class SecurityConfig {
                                                                 .requestMatchers("/**", "/api/v1/auth/**",
                                                                                 "/v3/api-docs/**",
                                                                                 "/swagger-ui/**",
-                                                                                "/swagger-ui.html")
+                                                                                "/swagger-ui.html",
+                                                                                "/api/v1/convert-file-csv-to-db")
                                                                 .permitAll()
                                                                 .requestMatchers(HttpMethod.GET, "/api/v1/users")
                                                                 .permitAll()

@@ -3,6 +3,7 @@ package t221124nqt.ecommerce.hair_shop.domain.product;
 import java.sql.Timestamp;
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,6 +29,10 @@ import t221124nqt.ecommerce.hair_shop.domain.voucher.VoucherProduct;
 @Entity
 @Table(name = "products")
 public class Product {
+    public Product() {
+        //TODO Auto-generated constructor stub
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
@@ -35,6 +40,7 @@ public class Product {
     String productName;
     String image;
     String shortDescription;
+    @Column(columnDefinition = "MEDIUMTEXT")
     String description;
     // Giá nhập vào
     double standardCost;
@@ -42,8 +48,6 @@ public class Product {
     double listPrice;
     // Số lượng sản phẩm trong 1 đơn vị (24 lon / thùng)
     double quantityPerUnit;
-    // Hạn sử dụng
-    Timestamp expiryDate;
     // Flag hàng nổi bật
     boolean isFeatured;
     // Flag hàng mới

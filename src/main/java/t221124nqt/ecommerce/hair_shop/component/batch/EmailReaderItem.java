@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import t221124nqt.ecommerce.hair_shop.domain.auth.User;
-import t221124nqt.ecommerce.hair_shop.service.imp.auth.IUserService;
+import t221124nqt.ecommerce.hair_shop.service.auth.IUserService;
 
 @Component
 @Slf4j

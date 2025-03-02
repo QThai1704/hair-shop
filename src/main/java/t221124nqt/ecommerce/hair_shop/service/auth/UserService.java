@@ -14,7 +14,7 @@ import t221124nqt.ecommerce.hair_shop.dto.response.auth.user.ResCreateUserDTO;
 import t221124nqt.ecommerce.hair_shop.dto.response.auth.user.ResGetUserDTO;
 import t221124nqt.ecommerce.hair_shop.dto.response.auth.user.ResUpdateUserDTO;
 import t221124nqt.ecommerce.hair_shop.dto.response.other.ResPaginationDTO;
-import t221124nqt.ecommerce.hair_shop.util.exception.EmailException;
+import t221124nqt.ecommerce.hair_shop.exception.EmailException;
 
 public interface UserService {
     User createUser(ReqCreateUserDTO user);

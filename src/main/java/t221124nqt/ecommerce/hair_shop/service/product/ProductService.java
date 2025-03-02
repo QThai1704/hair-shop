@@ -2,11 +2,12 @@ package t221124nqt.ecommerce.hair_shop.service.product;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.web.multipart.MultipartFile;
 
 import t221124nqt.ecommerce.hair_shop.domain.product.Product;
 import t221124nqt.ecommerce.hair_shop.dto.response.other.ResPaginationDTO;
 import t221124nqt.ecommerce.hair_shop.dto.response.product.ResProductDTO;
-import t221124nqt.ecommerce.hair_shop.util.exception.IdInvalidException;
+import t221124nqt.ecommerce.hair_shop.exception.IdInvalidException;
 
 public interface ProductService {
     Product createProduct(Product product);
@@ -26,4 +27,6 @@ public interface ProductService {
     void deleteProduct(long id);
 
     boolean checkExistById(long id);
+
+    void saveProductsToDatabase(MultipartFile file);
 }

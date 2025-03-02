@@ -20,7 +20,6 @@ public class ResProductDTO {
     double standardCost;
     double listPrice;
     double quantityPerUnit;
-    long discontinued;
     boolean isFeatured;
     boolean isNew;
     Timestamp createdAt;

@@ -8,7 +8,7 @@ import t221124nqt.ecommerce.hair_shop.dto.response.auth.role.ResCreateRoleDTO;
 import t221124nqt.ecommerce.hair_shop.dto.response.auth.role.ResGetRoleDTO;
 import t221124nqt.ecommerce.hair_shop.dto.response.auth.role.ResUpdateRoleDTO;
 import t221124nqt.ecommerce.hair_shop.dto.response.other.ResPaginationDTO;
-import t221124nqt.ecommerce.hair_shop.util.exception.IdInvalidException;
+import t221124nqt.ecommerce.hair_shop.exception.IdInvalidException;
 
 public interface RoleService {
     Role createRole(Role role) throws IdInvalidException;
